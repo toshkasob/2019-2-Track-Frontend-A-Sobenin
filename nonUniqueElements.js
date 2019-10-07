@@ -39,3 +39,8 @@ export default function nonUniqueElements(data) {
   data = nonUniqueElements;
   return data
 }
+
+/*
+  функции были созданы еще до первого коммита в мастер,
+  поэтому в pull_request видимо не отображались изменения
+*/

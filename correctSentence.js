@@ -29,3 +29,8 @@ export default function correctSentence(text) {
     text = letter1st.toUpperCase() + text.slice(1) + ".";
   return text;
 }
+
+/*
+  функции были созданы еще до первого коммита в мастер,
+  поэтому в pull_request видимо не отображались изменения
+*/

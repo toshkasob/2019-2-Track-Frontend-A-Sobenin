@@ -60,3 +60,8 @@ export default function convertBytesToHuman(bytes) {
   return outString;
 
 }
+
+/*
+  функции были созданы еще до первого коммита в мастер,
+  поэтому в pull_request видимо не отображались изменения
+*/
