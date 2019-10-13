@@ -5,6 +5,11 @@ template.innerHTML = `
             border: 0;
             outline: none;
             width: calc(100% - 2px);
+            hight: auto;
+            border-top: 3px solid rgba(25, 25, 25, 0.32);
+            padding: 5px;
+            bottom: 0px;
+            position: fixed;
         }
 
         :host {
@@ -30,6 +35,10 @@ class FormInput extends HTMLElement {
 
     attributeChangedCallback(name, oldValue, newValue) {
         this.$input.setAttribute(name, newValue);
+    }
+
+    set value(_newValue) {
+        this.$input.value = _newValue;
     }
 
     get value() {
