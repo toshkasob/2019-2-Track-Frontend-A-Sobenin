@@ -53,10 +53,19 @@ export default function convertBytesToHuman(bytes) {
     if (Math.floor(bytes / (1024**index) ) === 0) break;
     index2suffixBytes = index;
   }
-  let outString =  `convertBytesToHuman(${bytes}) === `;
+  /*let outString =  `convertBytesToHuman(${bytes}) === `;
   outString += `'${Math.round( (bytes / (1024**index2suffixBytes)) * 100) / 100} `;
   outString += `${arr[index2suffixBytes]}';`;
+  */
+ //корректировка выходных данных
+  let outString = `${Math.round( (bytes / (1024**index2suffixBytes)) * 100) / 100} `;
+  outString += `${arr[index2suffixBytes]}`;
   //alert (`[Out] ${outString}`);
   return outString;
 
 }
+
+/*
+  функции были созданы еще до первого коммита в мастер,
+  поэтому в pull_request видимо не отображались изменения
+*/

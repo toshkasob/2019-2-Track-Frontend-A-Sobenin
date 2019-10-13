@@ -121,30 +121,7 @@ typings/
 # Yarn Integrity file
 .yarn-integrity
 
-# dotenv environment variables file
-.env
-
 #### yeoman ####
-node_modules/
-bower_components/
+**/node_modules
+**/bower_components
 *.log
-
-dist/
-
-#### eslint ####
-# These rules are required to lint .eslintrc.js and friends.
-# It is not related to git in any manner.
-!.eslintrc.js
-!stylelint.config.js
-!.remarkrc.js
-
-#### custom ####
-flow-typed/
-.nuxt/
-.nuxt/*
-docs/_book/
-jest_*/
-.jscpd/
-
-#### template message of HomeWork ####
-package-lock.json
