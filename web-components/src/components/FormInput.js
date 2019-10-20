@@ -5,11 +5,13 @@ template.innerHTML = `
             border: 0;
             outline: none;
             width: calc(100% - 2px);
-            hight: auto;
+            height: 100%;
+            font-size: 25px;
+            align-item: center;
             border-top: 3px solid rgba(25, 25, 25, 0.32);
-            padding: 5px;
-            bottom: 0px;
-            position: fixed;
+            padding-left: 5vw;
+            padding-right: 5vw;
+            box-sizing: border-box;
         }
 
         :host {
