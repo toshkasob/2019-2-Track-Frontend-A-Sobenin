@@ -23,10 +23,11 @@ template.innerHTML = `
             text-align: center;
             color: white;
             font-size: 150%;
+            z-index: 55;
         }
 
         .chat {
-            background: #eeeeee;
+            background: #eeeeeef;
             height: calc(100vh - 100px);
             display: flex;
             flex-direction: column;
@@ -200,10 +201,10 @@ class MessageForm extends HTMLElement {
     addMessage(messageObj) {
 
         let $messageContainer = document.createElement('div');
-        if (messageObj.author == 'owner') {
+        if (messageObj.author === 'owner') {
             $messageContainer.className = 'my_chat-box';
         } else {
-            $messageContainer.className = 'opponent_chat-box'
+            $messageContainer.className = 'opponent_chat-box';
         }
         let $messageText = document.createElement('div');
         $messageText.className = 'message-text';
@@ -220,16 +221,17 @@ class MessageForm extends HTMLElement {
         $messageText.innerHTML = messageObj.text;
         $messageAuthor.innerHTML = messageObj.author;
         $messageTime.innerHTML = `${hours}:${minutes}`;
-        
+
         $messageContainer.appendChild($messageAuthor);
         $messageContainer.appendChild($messageText);
         $messageContainer.appendChild($messageTime);
         this.$message.appendChild($messageContainer);
+        this.$message.scrollTop = 9999;
     }
 
     saveMessageInLocalStorage(messageObj) {
         //let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
-        const chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages));
+        let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages));
         if (chatHistory === null) {
             chatHistory = [];
         }
@@ -243,7 +245,7 @@ class MessageForm extends HTMLElement {
             return;
         }
         // let $stringsCellStorage = $chatHistory.split('\n'); // без JSON
-        for (let iter_cell_storage = 0; iter_cell_storage < $stringsCellStorage.length; iter_cell_storage++) {
+        for (let iter_cell_storage = 0; iter_cell_storage < chatHistory.length; iter_cell_storage++) {
             // let $cellStorage = $stringsCellStorage[iter_cell_storage].split(';');
             // let $message = {
             //     time: $cellStorage[0],
