@@ -18,4 +18,4 @@ deploy:
     branch:
       - master
       - devel
-      - /^HomeWork\d+$/
+      - HomeWork2
