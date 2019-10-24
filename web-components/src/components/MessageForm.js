@@ -2,6 +2,17 @@ import { isNull } from 'util'
 
 const keyArrayMessages = 'chatInLocalStorage'
 
+function saveMessageInLocalStorage(messageObj) {
+  // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
+
+  let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
+  if (chatHistory === null) {
+    chatHistory = []
+  }
+  chatHistory.push(messageObj)
+  localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory))
+}
+
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
@@ -228,16 +239,7 @@ class MessageForm extends HTMLElement {
     this.$message.scrollTop = 9999
   }
 
-  saveMessageInLocalStorage(messageObj) {
-    // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
-
-    let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
-    if (chatHistory === null) {
-      chatHistory = []
-    }
-    chatHistory.push(messageObj)
-    localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory))
-  }
+  
 
   chatRender() {
     const chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
