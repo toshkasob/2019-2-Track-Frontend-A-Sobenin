@@ -227,13 +227,13 @@ class MessageForm extends HTMLElement {
     this.$message.scrollTop = 9999
   }
 
-  saveMessageInLocalStorage(messageObj) {
+  saveMessageInLocalStorage($messageObj) {
     // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
     let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
     if (chatHistory === null) {
       chatHistory = []
     }
-    chatHistory.push(messageObj)
+    chatHistory.push($messageObj)
     localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory))
   }
 
