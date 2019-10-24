@@ -147,6 +147,7 @@ class MessageForm extends HTMLElement {
     this.$input = this.shadowRoot.querySelector('form-input')
     this.$message = this.shadowRoot.querySelector('.chat')
     this.chatRender()
+    this.saveMessageInLocalStorage = saveMessageInLocalStorage.bind(this)
 
 
     this.$form.addEventListener('submit', this.onSubmit.bind(this))
@@ -227,8 +228,9 @@ class MessageForm extends HTMLElement {
     this.$message.scrollTop = 9999
   }
 
-  saveMessageInLocalStorage = (messageObj) => {
+  saveMessageInLocalStorage(messageObj) {
     // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
+
     let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
     if (chatHistory === null) {
       chatHistory = []
