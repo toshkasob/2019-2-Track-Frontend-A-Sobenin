@@ -254,7 +254,6 @@ class MessageForm extends HTMLElement {
       this.addMessage(chatHistory[iterCellStorage]);
     }
 
-
     // for (let cell_storage = 0; cell_storage < localStorage.length; cell_storage++) {
     //     let $containerFromStorage = document.createElement('div');
     //     $containerFromStorage.className = 'my_chat-box';
