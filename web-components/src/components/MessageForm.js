@@ -1,8 +1,8 @@
-import { isNull } from 'util';
+import { isNull } from 'util'
 
-const keyArrayMessages = 'chatInLocalStorage';
+const keyArrayMessages = 'chatInLocalStorage'
 
-const template = document.createElement('template');
+const template = document.createElement('template')
 template.innerHTML = `
     <style>
         form-input {
@@ -106,7 +106,7 @@ template.innerHTML = `
         <div class="chat"></div>
         <form-input name="message-text" placeholder="Сообщение"></form-input>
     </form>
-`;
+`
 /*
         .chat-box {
             background: #ecbdec;
@@ -140,27 +140,27 @@ template.innerHTML = `
 */
 class MessageForm extends HTMLElement {
   constructor() {
-    super();
-    this.shadowRoot = this.attachShadow({ mode: 'open' });
-    this.shadowRoot.appendChild(template.content.cloneNode(true));
-    this.$form = this.shadowRoot.querySelector('form');
-    this.$input = this.shadowRoot.querySelector('form-input');
-    this.$message = this.shadowRoot.querySelector('.chat');
-    this.chatRender();
+    super()
+    this.shadowRoot = this.attachShadow({ mode: 'open' })
+    this.shadowRoot.appendChild(template.content.cloneNode(true))
+    this.$form = this.shadowRoot.querySelector('form')
+    this.$input = this.shadowRoot.querySelector('form-input')
+    this.$message = this.shadowRoot.querySelector('.chat')
+    this.chatRender()
 
 
-    this.$form.addEventListener('submit', this.onSubmit.bind(this));
-    this.$form.addEventListener('keypress', this.onKeyPress.bind(this));
+    this.$form.addEventListener('submit', this.onSubmit.bind(this))
+    this.$form.addEventListener('keypress', this.onKeyPress.bind(this))
   }
 
   onSubmit(event) {
-    event.preventDefault();
+    event.preventDefault()
     // this.$message.innerText = this.$input.value;
     if (this.$input.value.length > 0) {
-      this.messageObj = {};
-      this.messageObj.text = this.$input.value;
-      this.messageObj.author = 'owner';
-      this.messageObj.time = new Date();
+      this.messageObj = {}
+      this.messageObj.text = this.$input.value
+      this.messageObj.author = 'owner'
+      this.messageObj.time = new Date()
       // let $time = new Date();
       // let $author = 'owner';
       // localStorage.setItem('ID_message=' + (localStorage.length).toString(),
@@ -185,62 +185,62 @@ class MessageForm extends HTMLElement {
       // $newContainer.appendChild($newMessage);
       // $newContainer.appendChild($timeDisplayed);
       // this.$message.appendChild($newContainer);
-      this.$input.value = '';
-      this.addMessage(this.messageObj);
-      this.saveMessageInLocalStorage(this.messageObj);
+      this.$input.value = ''
+      this.addMessage(this.messageObj)
+      this.saveMessageInLocalStorage(this.messageObj)
     }
   }
 
   onKeyPress(event) {
     if (event.keyCode == 13) {
-      this.$form.dispatchEvent(new Event('submit'));
+      this.$form.dispatchEvent(new Event('submit'))
     }
   }
 
   addMessage(messageObj) {
-    const $messageContainer = document.createElement('div');
+    const $messageContainer = document.createElement('div')
     if (messageObj.author === 'owner') {
-      $messageContainer.className = 'my_chat-box';
+      $messageContainer.className = 'my_chat-box'
     } else {
-      $messageContainer.className = 'opponent_chat-box';
+      $messageContainer.className = 'opponent_chat-box'
     }
-    const $messageText = document.createElement('div');
-    $messageText.className = 'message-text';
-    const $messageAuthor = document.createElement('div');
-    $messageAuthor.className = 'message-author';
-    const $messageTime = document.createElement('div');
-    $messageTime.className = 'message-time';
+    const $messageText = document.createElement('div')
+    $messageText.className = 'message-text'
+    const $messageAuthor = document.createElement('div')
+    $messageAuthor.className = 'message-author'
+    const $messageTime = document.createElement('div')
+    $messageTime.className = 'message-time'
 
-    const date = new Date(messageObj.time);
-    const hours = date.getHours();
-    let minutes = date.getMinutes();
-    minutes = (minutes < 10) ? (`0${minutes}`) : minutes;
+    const date = new Date(messageObj.time)
+    const hours = date.getHours()
+    let minutes = date.getMinutes()
+    minutes = (minutes < 10) ? (`0${minutes}`) : minutes
 
-    $messageText.innerHTML = messageObj.text;
-    $messageAuthor.innerHTML = messageObj.author;
-    $messageTime.innerHTML = `${hours}:${minutes}`;
+    $messageText.innerHTML = messageObj.text
+    $messageAuthor.innerHTML = messageObj.author
+    $messageTime.innerHTML = `${hours}:${minutes}`
 
-    $messageContainer.appendChild($messageAuthor);
-    $messageContainer.appendChild($messageText);
-    $messageContainer.appendChild($messageTime);
-    this.$message.appendChild($messageContainer);
-    this.$message.scrollTop = 9999;
+    $messageContainer.appendChild($messageAuthor)
+    $messageContainer.appendChild($messageText)
+    $messageContainer.appendChild($messageTime)
+    this.$message.appendChild($messageContainer)
+    this.$message.scrollTop = 9999
   }
 
   saveMessageInLocalStorage(messageObj) {
     // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
-    let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages));
+    let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
     if (chatHistory === null) {
       chatHistory = []
     }
-    chatHistory.push(messageObj);
-    localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory));
+    chatHistory.push(messageObj)
+    localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory))
   }
 
   chatRender() {
-    const chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages));
+    const chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
     if (chatHistory === null) {
-      return;
+      return
     }
     // let $stringsCellStorage = $chatHistory.split('\n'); // без JSON
     for (let iterCellStorage = 0; iterCellStorage < chatHistory.length; iterCellStorage+=1) {
@@ -251,7 +251,7 @@ class MessageForm extends HTMLElement {
       //     text: $cellStorage[3]
       // };
       // this.addMessage($message)
-      this.addMessage(chatHistory[iterCellStorage]);
+      this.addMessage(chatHistory[iterCellStorage])
     }
 
     // for (let cell_storage = 0; cell_storage < localStorage.length; cell_storage++) {
@@ -280,4 +280,4 @@ class MessageForm extends HTMLElement {
 }
 
 
-customElements.define('message-form', MessageForm);
+customElements.define('message-form', MessageForm)
