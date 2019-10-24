@@ -1,13 +1,13 @@
 
 
-const path = require('path');
+const path = require('path')
 
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const MiniCSSExtractPlugin = require('mini-css-extract-plugin');
-const webpack = require('webpack');
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const MiniCSSExtractPlugin = require('mini-css-extract-plugin')
+const webpack = require('webpack')
 
-const SRC_PATH = path.resolve(__dirname, 'src');
-const BUILD_PATH = path.resolve(__dirname, 'build');
+const SRC_PATH = path.resolve(__dirname, 'src')
+const BUILD_PATH = path.resolve(__dirname, 'build')
 
 module.exports = {
   context: SRC_PATH,
@@ -65,4 +65,4 @@ module.exports = {
       template: './index.html',
     }),
   ],
-};
+}
