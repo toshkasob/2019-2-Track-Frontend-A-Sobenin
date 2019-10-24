@@ -141,19 +141,19 @@ template.innerHTML = `
 class MessageForm extends HTMLElement {
   constructor() {
     super();
-    this._shadowRoot = this.attachShadow({ mode: 'open' });
-    this._shadowRoot.appendChild(template.content.cloneNode(true));
-    this.$form = this._shadowRoot.querySelector('form');
-    this.$input = this._shadowRoot.querySelector('form-input');
-    this.$message = this._shadowRoot.querySelector('.chat');
+    this.shadowRoot = this.attachShadow({ mode: 'open' });
+    this.shadowRoot.appendChild(template.content.cloneNode(true));
+    this.$form = this.shadowRoot.querySelector('form');
+    this.$input = this.shadowRoot.querySelector('form-input');
+    this.$message = this.shadowRoot.querySelector('.chat');
     this.chatRender();
 
 
-    this.$form.addEventListener('submit', this._onSubmit.bind(this));
-    this.$form.addEventListener('keypress', this._onKeyPress.bind(this));
+    this.$form.addEventListener('submit', this.onSubmit.bind(this));
+    this.$form.addEventListener('keypress', this.onKeyPress.bind(this));
   }
 
-  _onSubmit(event) {
+  onSubmit(event) {
     event.preventDefault();
     // this.$message.innerText = this.$input.value;
     if (this.$input.value.length > 0) {
@@ -191,7 +191,7 @@ class MessageForm extends HTMLElement {
     }
   }
 
-  _onKeyPress(event) {
+  onKeyPress(event) {
     if (event.keyCode == 13) {
       this.$form.dispatchEvent(new Event('submit'));
     }
@@ -231,7 +231,7 @@ class MessageForm extends HTMLElement {
     // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
     let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages));
     if (chatHistory === null) {
-      chatHistory = [];
+      chatHistory = []
     }
     chatHistory.push(messageObj);
     localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory));
@@ -243,7 +243,7 @@ class MessageForm extends HTMLElement {
       return;
     }
     // let $stringsCellStorage = $chatHistory.split('\n'); // без JSON
-    for (let iter_cell_storage = 0; iter_cell_storage < chatHistory.length; iter_cell_storage++) {
+    for (let iterCellStorage = 0; iterCellStorage < chatHistory.length; iterCellStorage+=1) {
       // let $cellStorage = $stringsCellStorage[iter_cell_storage].split(';');
       // let $message = {
       //     time: $cellStorage[0],
@@ -251,7 +251,7 @@ class MessageForm extends HTMLElement {
       //     text: $cellStorage[3]
       // };
       // this.addMessage($message)
-      this.addMessage(chatHistory[iter_cell_storage]);
+      this.addMessage(chatHistory[iterCellStorage]);
     }
 
 
