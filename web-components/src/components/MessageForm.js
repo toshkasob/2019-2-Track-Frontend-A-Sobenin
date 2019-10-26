@@ -1,5 +1,9 @@
 import { isNull } from 'util'
 
+/* eslint no-underscore-dangle:
+["error", { "allow": ["_shadowRoot", "_onKeyPress", "_onSubmit"] }]
+*/
+
 const keyArrayMessages = 'chatInLocalStorage'
 
 function saveMessageInLocalStorage(messageObj) {
@@ -152,20 +156,20 @@ template.innerHTML = `
 class MessageForm extends HTMLElement {
   constructor() {
     super()
-    this.shadowRoot = this.attachShadow({ mode: 'open' })
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
-    this.$form = this.shadowRoot.querySelector('form')
-    this.$input = this.shadowRoot.querySelector('form-input')
-    this.$message = this.shadowRoot.querySelector('.chat')
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._shadowRoot.appendChild(template.content.cloneNode(true))
+    this.$form = this._shadowRoot.querySelector('form')
+    this.$input = this._shadowRoot.querySelector('form-input')
+    this.$message = this._shadowRoot.querySelector('.chat')
     this.chatRender()
     this.saveMessageInLocalStorage = saveMessageInLocalStorage.bind(this)
 
 
-    this.$form.addEventListener('submit', this.onSubmit.bind(this))
-    this.$form.addEventListener('keypress', this.onKeyPress.bind(this))
+    this.$form.addEventListener('submit', this._onSubmit.bind(this))
+    this.$form.addEventListener('keypress', this._onKeyPress.bind(this))
   }
 
-  onSubmit(event) {
+  _onSubmit(event) {
     event.preventDefault()
     // this.$message.innerText = this.$input.value;
     if (this.$input.value.length > 0) {
@@ -203,7 +207,7 @@ class MessageForm extends HTMLElement {
     }
   }
 
-  onKeyPress(event) {
+  _onKeyPress(event) {
     if (event.keyCode == 13) {
       this.$form.dispatchEvent(new Event('submit'))
     }

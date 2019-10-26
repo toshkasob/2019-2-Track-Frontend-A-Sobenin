@@ -1,3 +1,6 @@
+/* eslint no-underscore-dangle:
+["error", { "allow": ["_shadowRoot", "_onKeyPress", "_onSubmit"] }]
+*/
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
@@ -25,10 +28,10 @@ template.innerHTML = `
 class FormInput extends HTMLElement {
   constructor() {
     super()
-    this.shadowRoot = this.attachShadow({ mode: 'open' })
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
+    this._shadowRoot = this.attachShadow({ mode: 'open' })
+    this._shadowRoot.appendChild(template.content.cloneNode(true))
 
-    this.$input = this.shadowRoot.querySelector('input')
+    this.$input = this._shadowRoot.querySelector('input')
   }
 
   static get observedAttributes() {
