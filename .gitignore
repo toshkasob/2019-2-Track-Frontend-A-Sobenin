@@ -149,3 +149,5 @@ jest_*/
 #### template message of HomeWork ####
 package-lock.json
 *.bckp.*
+false/
+build/
