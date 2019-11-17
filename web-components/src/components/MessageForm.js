@@ -22,7 +22,7 @@ template.innerHTML = `
     <style>
         form-input {
             width: 100%;
-            height: 20vh;
+            height: 10vh;
             border: 0;
             display: flex;
             box-sizing: border-box;
@@ -43,7 +43,7 @@ template.innerHTML = `
 
         .chat {
             background: #eeeeeef;
-            height: calc(100vh - 100px);
+            height: calc(90vh - 60px);
             display: flex;
             flex-direction: column;
             align-item: flex-end;
@@ -117,7 +117,6 @@ template.innerHTML = `
         }
     </style>
     <form>
-        <div class="chat-header">Дженифер</div>
         <div class="chat"></div>
         <form-input name="message-text" placeholder="Сообщение"></form-input>
     </form>

@@ -21,3 +21,19 @@ body {
     font-weight: 400;
     line-height: 20px;
 }
+
+app-header {
+    z-index: 55;
+    height: 60px;
+    width: 100%;
+    background-color: purple;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    
+}
+.chats-all {
+    display: flex;
+    flex-direction: column;
+}
