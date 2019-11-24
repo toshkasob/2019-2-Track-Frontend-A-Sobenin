@@ -6,44 +6,30 @@ import { isNull } from 'util'
 
 const keyArrayMessages = 'chatInLocalStorage'
 
-function saveMessageInLocalStorage(messageObj) {
-  // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
+// function saveMessageInLocalStorage(messageObj) {
+//   // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
 
-  let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
-  if (chatHistory === null) {
-    chatHistory = []
-  }
-  chatHistory.push(messageObj)
-  localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory))
-}
+//   let chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
+//   if (chatHistory === null) {
+//     chatHistory = []
+//   }
+//   chatHistory.push(messageObj)
+//   localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory))
+// }
 
 const template = document.createElement('template')
 template.innerHTML = `
     <style>
         form-input {
             width: 100%;
-            height: 10vh;
+            height: 6vh;
             border: 0;
             display: flex;
             box-sizing: border-box;
         }
-        .chat-header {
-            background: purple;
-            width: 100%;
-            height: 8vh;
-            top: 0px;
-            position: fixed;
-            padding: 1vh;
-            overflow: hidden;
-            text-align: center;
-            color: white;
-            font-size: 150%;
-            z-index: 55;
-        }
-
         .chat {
             background: #eeeeeef;
-            height: calc(90vh - 60px);
+            height: 85vh;
             display: flex;
             flex-direction: column;
             align-item: flex-end;
@@ -68,6 +54,23 @@ template.innerHTML = `
             top: 10vh;
             
         }
+        .opponent_chat-box {            
+          background: #ecbdec;
+          width: auto;
+          padding: 1%;
+          margin: 1%;
+          max-width: 75%;
+          min-width: 25%;
+          border-radius: 15px;
+          display: inline-flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          align-self: flex-start;
+          position: relative;
+          top: 10vh;
+          
+      }
         .chat-text {
             text-align: right;
             font-size: 30px;
@@ -118,50 +121,26 @@ template.innerHTML = `
     </style>
     <form>
         <div class="chat"></div>
-        <form-input name="message-text" placeholder="Сообщение"></form-input>
     </form>
 `
-/*
-        .chat-box {
-            background: #ecbdec;
-            border-radius: 15px;
-            width: auto;
-            padding: 15px;
-            margin-bottom: 70px;
-            max-width: 700px;
-            min-width: 150px;
 
-        }
-        .chat-text {
-            font-family: Segoi UI;
-        }
-
-        .chat-box {
-            background: #ecbdec;
-            width: auto;
-            padding: 1%;
-            margin-bottom: 2%;
-            max-width: 95%;
-            min-width: 5%;
-            border-radius: 15px;
-        }
-        .chat-text {
-            font-family: Segoi UI;
-        }
-        .chat {
-            background: #dddddd
-        }
-*/
 class MessageForm extends HTMLElement {
   constructor() {
     super()
     this._shadowRoot = this.attachShadow({ mode: 'open' })
     this._shadowRoot.appendChild(template.content.cloneNode(true))
     this.$form = this._shadowRoot.querySelector('form')
-    this.$input = this._shadowRoot.querySelector('form-input')
+    // this.$input = this._shadowRoot.querySelector('form-input')
+    this.$form.appendChild(document.createElement('form-input'))
+    this.$input = this.$form.querySelector('form-input')
+    this.$input.setAttribute('name', 'message-text')
+    this.$input.setAttribute('placeholder', 'Сообщение')
     this.$message = this._shadowRoot.querySelector('.chat')
-    this.chatRender()
-    this.saveMessageInLocalStorage = saveMessageInLocalStorage.bind(this)
+
+    this.$idChat = 0
+    this.$keyArrayMessages = 'chatsArray'
+    // this.chatRender()
+    // this.saveMessageInLocalStorage = saveMessageInLocalStorage.bind(this)
 
 
     this.$form.addEventListener('submit', this._onSubmit.bind(this))
@@ -170,39 +149,14 @@ class MessageForm extends HTMLElement {
 
   _onSubmit(event) {
     event.preventDefault()
-    // this.$message.innerText = this.$input.value;
     if (this.$input.value.length > 0) {
-      this.messageObj = {}
-      this.messageObj.text = this.$input.value
-      this.messageObj.author = 'owner'
-      this.messageObj.time = new Date()
-      // let $time = new Date();
-      // let $author = 'owner';
-      // localStorage.setItem('ID_message=' + (localStorage.length).toString(),
-      //                         ( (localStorage.length).toString() + ';'
-      //                         + this.$input.value + ';'
-      //                         + $author + ';'
-      //                         + $time.toTimeString() + ';'
-      //                         )
-      //                     );
-      // let $newContainer = document.createElement('div');
-      // $newContainer.className = 'my_chat-box';
-      // let $newMessage = document.createElement('p');
-      // $newMessage.className = 'message-text';
-      // let $authorDisplayed = document.createElement('span');
-      // $authorDisplayed.className = 'message-author';
-      // let $timeDisplayed = document.createElement('span');
-      // $timeDisplayed.className = 'message-time'
-      // $newMessage.innerHTML = this.$input.value;
-      // $authorDisplayed.innerHTML = $author;
-      // $timeDisplayed.innerHTML = $time.toTimeString();
-      // $newContainer.appendChild($authorDisplayed);
-      // $newContainer.appendChild($newMessage);
-      // $newContainer.appendChild($timeDisplayed);
-      // this.$message.appendChild($newContainer);
+      const messageObj = {}
+      messageObj.text = this.$input.value
+      messageObj.author = 'owner'
+      messageObj.time = new Date()
       this.$input.value = ''
-      this.addMessage(this.messageObj)
-      this.saveMessageInLocalStorage(this.messageObj)
+      this.addMessage(messageObj)
+      this.saveMessageInLocalStorage(messageObj)
     }
   }
 
@@ -242,47 +196,28 @@ class MessageForm extends HTMLElement {
     this.$message.scrollTop = 9999
   }
 
-  
+  saveMessageInLocalStorage(messageObj) {
+    // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
+
+    let chatHistory = JSON.parse(localStorage.getItem(this.$keyArrayMessages))
+
+    if (chatHistory === null) {
+      chatHistory = []
+    }
+    chatHistory[this.$idChat].messages.push(messageObj)
+    localStorage.setItem(this.$keyArrayMessages, JSON.stringify(chatHistory))
+  }
 
   chatRender() {
-    const chatHistory = JSON.parse(localStorage.getItem(keyArrayMessages))
+    const chatHistory = JSON.parse(localStorage.getItem(this.$keyArrayMessages))
     if (chatHistory === null) {
       return
     }
-    // let $stringsCellStorage = $chatHistory.split('\n'); // без JSON
-    for (let iterCellStorage = 0; iterCellStorage < chatHistory.length; iterCellStorage+=1) {
-      // let $cellStorage = $stringsCellStorage[iter_cell_storage].split(';');
-      // let $message = {
-      //     time: $cellStorage[0],
-      //     author: $cellStorage[2],
-      //     text: $cellStorage[3]
-      // };
-      // this.addMessage($message)
-      this.addMessage(chatHistory[iterCellStorage])
+    const chatObj = chatHistory[this.$idChat]
+    for (let iterCellStorage = 0; iterCellStorage < chatObj.messages.length; iterCellStorage+=1) {
+      this.addMessage(chatObj.messages[iterCellStorage])
     }
 
-    // for (let cell_storage = 0; cell_storage < localStorage.length; cell_storage++) {
-    //     let $containerFromStorage = document.createElement('div');
-    //     $containerFromStorage.className = 'my_chat-box';
-    //     let $messageFromStorage = document.createElement('p');
-    //     $messageFromStorage.className = 'message-text';
-    //     let $authorFromStorage = document.createElement('span');
-    //     $authorFromStorage.className = 'message-author';
-    //     let $timeFromStorage = document.createElement('span');
-    //     $timeFromStorage.className = 'message-time';
-    //     let $stringCellStorage = localStorage.getItem('ID_message=' + cell_storage);
-    //     //like csv-file: ID;message;author;time;
-    //     let $CellStorage = $stringCellStorage.split(';');
-    //     //let $idFromStorage.innerHTML = $CellStorage[0];
-    //     $messageFromStorage.innerHTML = $CellStorage[1];
-    //     $authorFromStorage.innerHTML = $CellStorage[2];
-    //     $timeFromStorage.innerHTML = $CellStorage[3];
-    //     $containerFromStorage.appendChild($authorFromStorage);
-    //     $containerFromStorage.appendChild($messageFromStorage);
-    //     $containerFromStorage.appendChild($timeFromStorage);
-    //     this.$message.appendChild($containerFromStorage);
-
-    // }
   }
 }
 
