@@ -194,7 +194,7 @@ class AppHeader extends HTMLElement {
         this.$message_form.style.display = 'none'
         this.$chats_list.style.display = 'flex'
         
-        // this.$chats_list.chatsRender()
+        this.$chats_list.chatsRender()
         // this.$chats_all.removeChild(this.$chats_all.lastChild)
         // this.$chats_all.querySelector('.create-chat').style.display = 'inline-block'
 
