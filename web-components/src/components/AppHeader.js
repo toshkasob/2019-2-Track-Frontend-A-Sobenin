@@ -9,7 +9,7 @@ template.innerHTML = `
             line-height: 6vh;
             margin-left: -40%;
             font-size: 4vh;
-            color: gray;
+            color: lightgray;
         }
         .chatslist-header {
             height: 9vh;
@@ -30,7 +30,7 @@ template.innerHTML = `
         button {
             height: 6vh;
             width: 6vh;
-            color: gray;
+            color: lightgray;
             background: purple;
             display: inline-block;
             cursor: pointer;
@@ -38,6 +38,7 @@ template.innerHTML = `
             outline: none;
             border-radius: 100%;
             margin: 3%;
+            padding: inherit;
             transition: 0.5s;
         }
         button:focus, button:hover {color: white; }
@@ -72,18 +73,18 @@ template.innerHTML = `
         }
         .opponent_status {
             font-size: 2vh;
-            color: grey;
+            color: lightgray;
             align-self: center;
             overflow-x: hidden;
         }
 
         .button_img {
             height: 4vh;
-            weight: 4vh;
-            fill: currentColor;
+            width: 4vw;
+            fill: currentcolor;
         }
         .opponent_img {
-            weight: 100%;
+            width: 100%;
             height: 100%;
             fill: currentColor;
         }
@@ -111,7 +112,7 @@ template.innerHTML = `
     </div>
     <div class="chat-header">
         <button class="button-back">
-            <svg id="button_img" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            <svg class="button_img" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                 width="4vh" height="4vh" viewBox="0 0 408 408" xml:space="preserve">
                 <path d="M408,178.5H96.9L239.7,35.7L204,0L0,204l204,204l35.7-35.7L96.9,229.5H408V178.5z"/>
             </svg>
@@ -144,7 +145,7 @@ template.innerHTML = `
             </div>
         </div>
         <button class="button-search_in_chat">
-            <svg id="button_img" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            <svg class="button_img" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                 viewBox="0 0 56.966 56.966" xml:space="preserve">
                 <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23
                     s10.318,23,23,23c4.761,0,9.298-1.436,13.177-4.162l13.661,14.208c0.571,0.593,1.339,0.92,2.162,0.92
@@ -153,7 +154,7 @@ template.innerHTML = `
             </svg>
         </button>
         <button class="button-settings">
-            <svg id="button_img" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
+            <svg class="button_img" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
                 viewBox="0 0 512 512" xml:space="preserve">
                 <circle cx="256" cy="256" r="64"/>
                 <circle cx="256" cy="448" r="64"/>
@@ -168,6 +169,7 @@ class AppHeader extends HTMLElement {
         super()
         // this.$chats_all = document.querySelector('.chats-all')
         this.$chats_list = document.querySelector('chats-list')
+        this.$chats_all = document.querySelector('.chats-all')
 
         this.shadowRoot = this.attachShadow({mode: 'open'})
         this.shadowRoot.appendChild(template.content.cloneNode(true))
@@ -177,6 +179,7 @@ class AppHeader extends HTMLElement {
 
         this.$button_menu = this.$chatslist_header.querySelector('.button-menu')
         this.$header = this.$chatslist_header.querySelector('.header')
+        this.$header_dialog = this.$chat_header.querySelector('.header')
 
         this.$button_back = this.$chat_header.querySelector('.button-back')
         this.$button_search = this.$chat_header.querySelector('.button-search_in_chat')
@@ -194,9 +197,13 @@ class AppHeader extends HTMLElement {
         this.$message_form.style.display = 'none'
         this.$chats_list.style.display = 'flex'
         
+        // this.parentNode.removeChild(this.parentNode.lastChild)
+        // this.parentNode.querySelector('.create-chat').style.display = 'inline-block'
+
         this.$chats_list.chatsRender()
-        // this.$chats_all.removeChild(this.$chats_all.lastChild)
-        // this.$chats_all.querySelector('.create-chat').style.display = 'inline-block'
+    
+        this.$chats_all.removeChild(this.$chats_all.lastChild)
+        this.$chats_all.querySelector('.create-chat').style.display = 'inline-block'
 
       }
 }
