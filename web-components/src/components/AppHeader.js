@@ -38,7 +38,6 @@ template.innerHTML = `
             outline: none;
             border-radius: 100%;
             margin: 3%;
-            padding: inherit;
             transition: 0.5s;
         }
         button:focus, button:hover {color: white; }
@@ -80,7 +79,7 @@ template.innerHTML = `
 
         .button_img {
             height: 4vh;
-            width: 4vw;
+            width: auto;
             fill: currentcolor;
         }
         .opponent_img {
