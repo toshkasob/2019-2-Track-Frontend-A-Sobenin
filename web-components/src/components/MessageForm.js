@@ -52,7 +52,9 @@ template.innerHTML = `
             align-self: flex-end;
             position: relative;
             top: 10vh;
-            
+            animation-name: slide-owner-message;
+            animation-duration: 0.3s;
+
         }
         .opponent_chat-box {            
           background: #ecbdec;
@@ -117,6 +119,10 @@ template.innerHTML = `
 
         input[type=submit] {
             visibility: collapse;
+        }
+        @keyframes slide-owner-message {
+          0%   {opacity: 0; margin-right: 10%; margin-left: 10%;}
+          100% {opacity: 1; margin-right:  0%; margin-left:  0%;}
         }
     </style>
     <form>

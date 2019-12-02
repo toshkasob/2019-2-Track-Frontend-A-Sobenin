@@ -69,11 +69,40 @@ message-form {
     outline: none;
     box-shadow: 0px 2px 4px 0px #000C;
     transition: 0.2s;
+    animation-name: slide-create-chat;
+    animation-duration: 0.5s;
+}
+.create-chat:hover {
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+}
+.create-chat:active {
+    background: aquamarine;
 }
 .create-chat-img {
     width: 50%;
     height: 50%;
 }
+@keyframes pulse {
+    0% {
+        -moz-box-shadow: 0 0 0 0 yellowgreen;
+        box-shadow: 0 0 0 0 yellowgreen;
+    }
+    70% {
+        -moz-box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+        box-shadow: 0 0 0 10px rgba(204,169,44, 0);
+    }
+    100% {
+        -moz-box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+        box-shadow: 0 0 0 0 rgba(204,169,44, 0);
+    }
+}
+@keyframes slide-create-chat {
+    0%   { transform: scale(0); }
+    100% { transform: scale(1); }
+  }
+
 .chats-all {
     display: flex;
     flex-direction: column;

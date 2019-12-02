@@ -17,11 +17,11 @@ template.innerHTML = `
             user-select: none;
         }
         .chat-elem:hover {
-            transition: 0.1s;
-            background: #0002;
+            transition: 0.5s;
+            background: lightblue;
         }
         .chat-elem:active {
-            transition: 0.2s;
+            transition: 0.1s;
             background: #0004;
         }
 
@@ -79,7 +79,6 @@ template.innerHTML = `
         .lastmessage-time {
             line-height: 4vh;
             font-size: 2vh;
-        }
     </style>
 `
 
