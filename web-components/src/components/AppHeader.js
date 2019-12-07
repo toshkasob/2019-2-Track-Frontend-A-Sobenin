@@ -140,7 +140,7 @@ template.innerHTML = `
             </div>
             <div class="opponent-info">
                 <span class="opponent_name">Дженнифер</span>
-                <span class="opponent_status">была 2 часа назад</span>
+                <span class="opponent_status">был(а) 2 часа назад</span>
             </div>
         </div>
         <button class="button-search_in_chat">
