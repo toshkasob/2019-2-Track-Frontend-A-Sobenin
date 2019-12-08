@@ -2,7 +2,7 @@
 ["error", { "allow": ["_shadowRoot", "_onKeyPress", "_onSubmit"] }]
 */
 
-const template = document.createElement('template')
+const template = document.createElement('template');
 template.innerHTML = `
     <style>
         .header {
@@ -161,52 +161,52 @@ template.innerHTML = `
             </svg>
         </button>
     </div>
-`
+`;
 
 class AppHeader extends HTMLElement {
-  constructor() {
-    super()
-    // this.$chats_all = document.querySelector('.chats-all')
-    this.$chats_list = document.querySelector('chats-list')
-    this.$chats_all = document.querySelector('.chats-all')
+	constructor() {
+		super();
+		// this.$chats_all = document.querySelector('.chats-all')
+		this.$chats_list = document.querySelector('chats-list');
+		this.$chats_all = document.querySelector('.chats-all');
 
-    this.shadowRoot = this.attachShadow({ mode: 'open' })
-    this.shadowRoot.appendChild(template.content.cloneNode(true))
+		this.shadowRoot = this.attachShadow({ mode: 'open' });
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.$chat_header = this.shadowRoot.querySelector('.chat-header')
-    this.$chatslist_header = this.shadowRoot.querySelector('.chatslist-header')
+		this.$chat_header = this.shadowRoot.querySelector('.chat-header');
+		this.$chatslist_header = this.shadowRoot.querySelector('.chatslist-header');
 
-    this.$button_menu = this.$chatslist_header.querySelector('.button-menu')
-    this.$header = this.$chatslist_header.querySelector('.header')
-    this.$header_dialog = this.$chat_header.querySelector('.header')
+		this.$button_menu = this.$chatslist_header.querySelector('.button-menu');
+		this.$header = this.$chatslist_header.querySelector('.header');
+		this.$header_dialog = this.$chat_header.querySelector('.header');
 
-    this.$button_back = this.$chat_header.querySelector('.button-back')
-    this.$button_search = this.$chat_header.querySelector('.button-search_in_chat')
-    this.$button_settings = this.$chat_header.querySelector('.button-settings')
-    this.$opponent = this.$chat_header.querySelector('.opponent')
-    this.$opponent_name = this.$chat_header.querySelector('.opponent_name')
+		this.$button_back = this.$chat_header.querySelector('.button-back');
+		this.$button_search = this.$chat_header.querySelector('.button-search_in_chat');
+		this.$button_settings = this.$chat_header.querySelector('.button-settings');
+		this.$opponent = this.$chat_header.querySelector('.opponent');
+		this.$opponent_name = this.$chat_header.querySelector('.opponent_name');
 
-    this.$button_back.addEventListener('click', this.onButtonBackClicked.bind(this))
-  }
+		this.$button_back.addEventListener('click', this.onButtonBackClicked.bind(this));
+	}
 
-  onButtonBackClicked() {
-    this.$chatslist_header.style.display = 'flex'
-    this.$chat_header.style.display = 'none'
+	onButtonBackClicked() {
+		this.$chatslist_header.style.display = 'flex';
+		this.$chat_header.style.display = 'none';
 
-    this.$message_form.style.display = 'none'
-    this.$chats_list.style.display = 'flex'
+		this.$message_form.style.display = 'none';
+		this.$chats_list.style.display = 'flex';
 
-    // this.parentNode.removeChild(this.parentNode.lastChild)
-    // this.parentNode.querySelector('.create-chat').style.display = 'inline-block'
+		// this.parentNode.removeChild(this.parentNode.lastChild)
+		// this.parentNode.querySelector('.create-chat').style.display = 'inline-block'
 
-    this.$chats_list.chatsRender()
+		this.$chats_list.chatsRender();
 
-    this.$chats_all.removeChild(this.$chats_all.lastChild)
-    this.$chats_all.querySelector('.create-chat').style.display = 'inline-block'
-  }
+		this.$chats_all.removeChild(this.$chats_all.lastChild);
+		this.$chats_all.querySelector('.create-chat').style.display = 'inline-block';
+	}
 }
 
-customElements.define('app-header', AppHeader)
+customElements.define('app-header', AppHeader);
 
 // .button-back {
 //     width: 50px;
