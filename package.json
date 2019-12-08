@@ -60,7 +60,7 @@
 		"eject": "react-scripts eject",
 		"format": "prettier --write '**/*.{js,jsx,json,md}'",
 		"format:changed": "pretty-quick",
-		"format:staged": "pretty-quick --staged --ignore-path='**/globalStyles.css'",
+		"format:staged": "pretty-quick --staged --ignore-path='src/**/globalStyles.css'",
 		"lint": "npm run lint:js && npm run lint:dup && npm run lint:css",
 		"lint:check": "eslint --print-config .eslintrc.json | eslint-config-prettier-check",
 		"lint:js:fix": "npm run lint:js -- --fix",
