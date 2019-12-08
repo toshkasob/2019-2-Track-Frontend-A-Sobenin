@@ -1,17 +1,18 @@
+/* eslint-disable semi */
 import React from 'react'
-import logo from '../assets/logo.svg'
 import styled from '@emotion/styled'
 import { keyframes } from '@emotion/core'
+import logo from '../assets/logo.svg'
 
 const year = new Date().getFullYear()
 
 const rotate360 = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
 `
 
 const TopBar = styled.div`
