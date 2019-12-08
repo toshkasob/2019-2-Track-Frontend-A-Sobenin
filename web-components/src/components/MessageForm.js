@@ -148,7 +148,6 @@ class MessageForm extends HTMLElement {
     // this.chatRender()
     // this.saveMessageInLocalStorage = saveMessageInLocalStorage.bind(this)
 
-
     this.$form.addEventListener('submit', this._onSubmit.bind(this))
     this.$form.addEventListener('keypress', this._onKeyPress.bind(this))
   }
@@ -189,7 +188,7 @@ class MessageForm extends HTMLElement {
     const date = new Date(messageObj.time)
     const hours = date.getHours()
     let minutes = date.getMinutes()
-    minutes = (minutes < 10) ? (`0${minutes}`) : minutes
+    minutes = minutes < 10 ? `0${minutes}` : minutes
 
     $messageText.innerHTML = messageObj.text
     $messageAuthor.innerHTML = messageObj.author
@@ -220,12 +219,10 @@ class MessageForm extends HTMLElement {
       return
     }
     const chatObj = chatHistory[this.$idChat]
-    for (let iterCellStorage = 0; iterCellStorage < chatObj.messages.length; iterCellStorage+=1) {
+    for (let iterCellStorage = 0; iterCellStorage < chatObj.messages.length; iterCellStorage += 1) {
       this.addMessage(chatObj.messages[iterCellStorage])
     }
-
   }
 }
-
 
 customElements.define('message-form', MessageForm)
