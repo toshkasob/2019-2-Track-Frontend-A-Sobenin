@@ -30,6 +30,11 @@
 		"DEBUG": false
 	},
 	"rules": {
+		"react/destructuring-assignment": 0,
+		"react/forbid-prop-types": 0,
+		"react/display-name": 0,
+		"jsx-a11y/interactive-supports-focus": 0,
+		"jsx-a11y/click-events-have-key-events": 0,
 		"import/no-named-as-default": 0,
 		"react/jsx-filename-extension": [
 			1,
