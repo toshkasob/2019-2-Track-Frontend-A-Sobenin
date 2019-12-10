@@ -10,26 +10,26 @@ import EditProfile from '../components/EditProfile';
 import EditProfileHeader from '../components/EditProfileHeader';
 
 export default class AppContainer extends React.Component {
-  render() {
-    return (
-      <div className="my_messenger">
-        <Router>
-          <Switch>
-            <Route path="/chat_id=:chatId">
-              <ChatHeader />
-              <MessageForm />
-            </Route>
-            <Route exact path="/">
-              <ChatsListHeader />
-              <ChatsList />
-            </Route>
-            <Route path="/edit_profile">
-              <EditProfileHeader />
-              <EditProfile />
-            </Route>
-          </Switch>
-        </Router>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<div className="my_messenger">
+				<Router>
+					<Switch>
+						<Route path="/chat_id=:chatId">
+							<ChatHeader />
+							<MessageForm />
+						</Route>
+						<Route exact path="/">
+							<ChatsListHeader />
+							<ChatsList />
+						</Route>
+						<Route path="/edit_profile">
+							<EditProfileHeader />
+							<EditProfile />
+						</Route>
+					</Switch>
+				</Router>
+			</div>
+		);
+	}
 }
