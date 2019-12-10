@@ -8,14 +8,14 @@ html {
 *,
 *::before,
 *::after {
-	box-sizing: inherit;
+  box-sizing: inherit;
 }
 
 :root {
-	--main-bg-color: rgb(128, 0, 128); /* purple */
-	--body-font-size: 15px;
-	--font-family: 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
-		'Helvetica Neue', sans-serif;
+  --main-bg-color: rgb(128, 0, 128); /* purple */
+  --body-font-size: 15px;
+  --font-family: 'Segoe UI', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans',
+    'Helvetica Neue', sans-serif;
 }
 
 /* prettier-ignore */
@@ -28,6 +28,6 @@ body {
 }
 
 .my_messenger {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
