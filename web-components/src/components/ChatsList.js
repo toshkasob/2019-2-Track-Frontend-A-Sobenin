@@ -2,9 +2,9 @@
 ["error", { "allow": ["_shadowRoot", "_onKeyPress", "_onSubmit"] }]
 */
 
-const chatsArrayKey = 'chatsArray'
+const chatsArrayKey = 'chatsArray';
 
-const template = document.createElement('template')
+const template = document.createElement('template');
 template.innerHTML = `
     <style>
         .chat-elem {
@@ -80,66 +80,66 @@ template.innerHTML = `
             line-height: 4vh;
             font-size: 2vh;
     </style>
-`
+`;
 
 class ChatsList extends HTMLElement {
-  constructor() {
-    super()
-    this.shadowRoot = this.attachShadow({ mode: 'open' })
-    this.$chats_all = document.querySelector('.chats-all')
-    this.chatsRender()
+	constructor() {
+		super();
+		this.shadowRoot = this.attachShadow({ mode: 'open' });
+		this.$chats_all = document.querySelector('.chats-all');
+		this.chatsRender();
 
-    this.$app_header = document.querySelector('app-header')
-    // this.$message_form = document.querySelector('message-form')
-    this.$chats_list = document.querySelector('chats-list')
-    this.$chat_header = this.$app_header.$chat_header
-    this.$chatslist_header = this.$app_header.$chatslist_header
+		this.$app_header = document.querySelector('app-header');
+		// this.$message_form = document.querySelector('message-form')
+		this.$chats_list = document.querySelector('chats-list');
+		this.$chat_header = this.$app_header.$chat_header;
+		this.$chatslist_header = this.$app_header.$chatslist_header;
 
-    this.$newchat_button = this.$chats_all.querySelector('.create-chat')
-    this.$newchat_button.addEventListener('click', this.onButtonChatCreateClicked.bind(this))
+		this.$newchat_button = this.$chats_all.querySelector('.create-chat');
+		this.$newchat_button.addEventListener('click', this.onButtonChatCreateClicked.bind(this));
 
-    // this.$test_button = this.shadowRoot.querySelector('.test')
-    // this.$test_button.addEventListener('click', this.onTestClicked.bind(this))
-}
+		// this.$test_button = this.shadowRoot.querySelector('.test')
+		// this.$test_button.addEventListener('click', this.onTestClicked.bind(this))
+	}
 
-    onButtonChatCreateClicked() {
-        const chatObj = {}
-        chatObj.id = this.chatCount
-        chatObj.opponent = 'Opponent Name'
-        chatObj.messages = []
-        this.chatToLocal(chatObj)
-        this.addChat(chatObj)
-        this.chatCount += 1
-        this.scrollTop = 9999
-    }
+	onButtonChatCreateClicked() {
+		const chatObj = {};
+		chatObj.id = this.chatCount;
+		chatObj.opponent = 'Opponent Name';
+		chatObj.messages = [];
+		this.chatToLocal(chatObj);
+		this.addChat(chatObj);
+		this.chatCount += 1;
+		this.scrollTop = 9999;
+	}
 
-// onTestClicked() {
-//     this.$chats_list.style.display = 'none'
-//     this.$message_form.style.display = 'flex'
-//     this.$chatslist_header.style.display = 'none'
-//     this.$chat_header.style.display = 'flex'
-// }
+	// onTestClicked() {
+	//     this.$chats_list.style.display = 'none'
+	//     this.$message_form.style.display = 'flex'
+	//     this.$chatslist_header.style.display = 'none'
+	//     this.$chat_header.style.display = 'flex'
+	// }
 
-    addChat(chatObj) {
-        const divFormatChatElem = document.createElement('div')
-        const divFormatOpponentImg = document.createElement('div')
-        const divFormatTextInfo = document.createElement('div')
-        const divFormatMessagePreview = document.createElement('div')
-        const spanFormatOpponentName = document.createElement('span')
-        const spanFormatLastMessageText = document.createElement('span')
-        const divFormatLastMessageInfo = document.createElement('div')
-        const spanFormatLastMessageTime = document.createElement('span')
+	addChat(chatObj) {
+		const divFormatChatElem = document.createElement('div');
+		const divFormatOpponentImg = document.createElement('div');
+		const divFormatTextInfo = document.createElement('div');
+		const divFormatMessagePreview = document.createElement('div');
+		const spanFormatOpponentName = document.createElement('span');
+		const spanFormatLastMessageText = document.createElement('span');
+		const divFormatLastMessageInfo = document.createElement('div');
+		const spanFormatLastMessageTime = document.createElement('span');
 
-        divFormatChatElem.className = 'chat-elem'
-        divFormatOpponentImg.className = 'opponent-face'
-        divFormatTextInfo.className = 'text-info'
-        divFormatMessagePreview.className = 'message-preview'
-        spanFormatOpponentName.className = 'opponent_name'
-        spanFormatLastMessageText.className = 'lastmessage-text'
-        divFormatLastMessageInfo.className = 'lastmessage-info'
-        spanFormatLastMessageTime.className = 'lastmessage-time'
+		divFormatChatElem.className = 'chat-elem';
+		divFormatOpponentImg.className = 'opponent-face';
+		divFormatTextInfo.className = 'text-info';
+		divFormatMessagePreview.className = 'message-preview';
+		spanFormatOpponentName.className = 'opponent_name';
+		spanFormatLastMessageText.className = 'lastmessage-text';
+		divFormatLastMessageInfo.className = 'lastmessage-info';
+		spanFormatLastMessageTime.className = 'lastmessage-time';
 
-        const opponentImg = `
+		const opponentImg = `
         <svg version="1.1" class="opponent_img" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
             viewBox="0 0 55 55" width="7vh" height="7vh" fill="white" xml:space="preserve">
             <path d="M55,27.5C55,12.337,42.663,0,27.5,0S0,12.337,0,27.5c0,8.009,3.444,15.228,8.926,20.258l-0.026,0.023l0.892,0.752
@@ -158,86 +158,86 @@ class ChatsList extends HTMLElement {
                 s-7.024,1.065-8.867,3.168c-2.119,2.416-1.935,5.346-1.883,5.864v4.667c-0.568,0.661-0.887,1.502-0.887,2.369v3.545
                 c0,1.101,0.494,2.128,1.34,2.821c0.81,3.173,2.477,5.575,3.093,6.389v2.894c0,0.816-0.445,1.566-1.162,1.958l-7.907,4.313
                 c-0.252,0.137-0.502,0.297-0.752,0.476C5.276,41.792,2,35.022,2,27.5z"/>
-        </svg>`
-        divFormatOpponentImg.innerHTML = opponentImg
-        spanFormatOpponentName.innerText = chatObj.opponent
+        </svg>`;
+		divFormatOpponentImg.innerHTML = opponentImg;
+		spanFormatOpponentName.innerText = chatObj.opponent;
 
-        if (chatObj.messages.length !== 0) {
-            const lastmessageObj = chatObj.messages[chatObj.messages.length - 1]
-            const date = new Date(lastmessageObj.time)
-            let hours = date.getHours()
-            let minutes = date.getMinutes()
-            hours = (hours < 10) ? (`0${hours}`) : hours
-            minutes = (minutes < 10) ? (`0${minutes}`) : minutes
-            spanFormatLastMessageText.innerText = lastmessageObj.text
-            spanFormatLastMessageTime.innerText = `${hours}:${minutes}`
-        }
-        divFormatMessagePreview.appendChild(spanFormatOpponentName)
-        divFormatMessagePreview.appendChild(spanFormatLastMessageText)
-        divFormatLastMessageInfo.appendChild(spanFormatLastMessageTime)
-        divFormatTextInfo.appendChild(divFormatMessagePreview)
-        divFormatTextInfo.appendChild(divFormatLastMessageInfo)
-        divFormatChatElem.appendChild(divFormatOpponentImg)
-        divFormatChatElem.appendChild(divFormatTextInfo)
+		if (chatObj.messages.length !== 0) {
+			const lastmessageObj = chatObj.messages[chatObj.messages.length - 1];
+			const date = new Date(lastmessageObj.time);
+			let hours = date.getHours();
+			let minutes = date.getMinutes();
+			hours = hours < 10 ? `0${hours}` : hours;
+			minutes = minutes < 10 ? `0${minutes}` : minutes;
+			spanFormatLastMessageText.innerText = lastmessageObj.text;
+			spanFormatLastMessageTime.innerText = `${hours}:${minutes}`;
+		}
+		divFormatMessagePreview.appendChild(spanFormatOpponentName);
+		divFormatMessagePreview.appendChild(spanFormatLastMessageText);
+		divFormatLastMessageInfo.appendChild(spanFormatLastMessageTime);
+		divFormatTextInfo.appendChild(divFormatMessagePreview);
+		divFormatTextInfo.appendChild(divFormatLastMessageInfo);
+		divFormatChatElem.appendChild(divFormatOpponentImg);
+		divFormatChatElem.appendChild(divFormatTextInfo);
 
-        divFormatChatElem.addEventListener('click', this.openChat.bind(this))
-        divFormatChatElem.idChat = chatObj.id
-        divFormatChatElem.opponent_name = chatObj.opponent
+		divFormatChatElem.addEventListener('click', this.openChat.bind(this));
+		divFormatChatElem.idChat = chatObj.id;
+		divFormatChatElem.opponent_name = chatObj.opponent;
 
-        this.shadowRoot.appendChild(divFormatChatElem)
-    }
+		this.shadowRoot.appendChild(divFormatChatElem);
+	}
 
-    openChat(event) {
-        // this.style.animationName = 'open-chat-animation'
-        const chat = document.createElement('message-form')
-        let { target } = event
-        while (target.className !== 'chat-elem') {
-            target = target.parentElement
-            if (target === null) {
-                return
-            }
-        }
-        chat.$idChat = Number(target.idChat)
-        chat.chatRender()
-        chat.$chatsArrayKey = chatsArrayKey
-    
-        this.$chats_all.querySelector('.create-chat').style.display = 'none'
-        this.$chats_list.style.display = 'none'
-        this.$chats_all.appendChild(chat)
-        chat.style.display = 'flex'
-        // chat.$input.$input.focus()
-        chat.$message.scrollTop = 9999
-        this.$app_header.$opponent_name.innerText = target.opponent_name
-        this.$chatslist_header.style.display = 'none'
-        this.$chat_header.style.display = 'flex'
-        this.$app_header.$message_form = chat
-    }
-    
-    chatToLocal(chatObj) {
-        this.storageChatArray = JSON.parse(localStorage.getItem(chatsArrayKey))
-        if (this.storageChatArray === null) {
-            this.storageChatArray = []
-        }
-        this.storageChatArray.push(chatObj)
-        localStorage.setItem(chatsArrayKey, JSON.stringify(this.storageChatArray))
-    }
-    
-    chatsRender() {
-        while (this.shadowRoot.hasChildNodes()) {
-            this.shadowRoot.removeChild(this.shadowRoot.firstChild)
-        }
-        this.shadowRoot.appendChild(template.content.cloneNode(true))
+	openChat(event) {
+		// this.style.animationName = 'open-chat-animation'
+		const chat = document.createElement('message-form');
+		let { target } = event;
+		while (target.className !== 'chat-elem') {
+			target = target.parentElement;
+			if (target === null) {
+				return;
+			}
+		}
+		chat.$idChat = Number(target.idChat);
+		chat.chatRender();
+		chat.$chatsArrayKey = chatsArrayKey;
 
-        const storageChatArray = JSON.parse(localStorage.getItem(chatsArrayKey))
-        this.chatCount = 0
-        if (storageChatArray === null) {
-            return
-        }
-        this.chatCount = storageChatArray.length
-        for (let i = 0; i < this.chatCount; i += 1) {
-            this.addChat(storageChatArray[i])
-        }
-    }
+		this.$chats_all.querySelector('.create-chat').style.display = 'none';
+		this.$chats_list.style.display = 'none';
+		this.$chats_all.appendChild(chat);
+		chat.style.display = 'flex';
+		// chat.$input.$input.focus()
+		chat.$message.scrollTop = 9999;
+		this.$app_header.$opponent_name.innerText = target.opponent_name;
+		this.$chatslist_header.style.display = 'none';
+		this.$chat_header.style.display = 'flex';
+		this.$app_header.$message_form = chat;
+	}
+
+	chatToLocal(chatObj) {
+		this.storageChatArray = JSON.parse(localStorage.getItem(chatsArrayKey));
+		if (this.storageChatArray === null) {
+			this.storageChatArray = [];
+		}
+		this.storageChatArray.push(chatObj);
+		localStorage.setItem(chatsArrayKey, JSON.stringify(this.storageChatArray));
+	}
+
+	chatsRender() {
+		while (this.shadowRoot.hasChildNodes()) {
+			this.shadowRoot.removeChild(this.shadowRoot.firstChild);
+		}
+		this.shadowRoot.appendChild(template.content.cloneNode(true));
+
+		const storageChatArray = JSON.parse(localStorage.getItem(chatsArrayKey));
+		this.chatCount = 0;
+		if (storageChatArray === null) {
+			return;
+		}
+		this.chatCount = storageChatArray.length;
+		for (let i = 0; i < this.chatCount; i += 1) {
+			this.addChat(storageChatArray[i]);
+		}
+	}
 }
 
-customElements.define('chats-list', ChatsList)
+customElements.define('chats-list', ChatsList);

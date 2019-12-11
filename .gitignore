@@ -130,6 +130,7 @@ bower_components/
 *.log
 
 dist/
+build/
 
 #### eslint ####
 # These rules are required to lint .eslintrc.js and friends.
@@ -145,9 +146,9 @@ flow-typed/
 docs/_book/
 jest_*/
 .jscpd/
+.idea
+.vscode
 
 #### template message of HomeWork ####
-package-lock.json
 *.bckp.*
 false/
-build/

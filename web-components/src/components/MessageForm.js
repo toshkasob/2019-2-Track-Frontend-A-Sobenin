@@ -1,10 +1,10 @@
-import { isNull } from 'util'
+import { isNull } from 'util';
 
 /* eslint no-underscore-dangle:
 ["error", { "allow": ["_shadowRoot", "_onKeyPress", "_onSubmit"] }]
 */
 
-const keyArrayMessages = 'chatInLocalStorage'
+const keyArrayMessages = 'chatInLocalStorage';
 
 // function saveMessageInLocalStorage(messageObj) {
 //   // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
@@ -17,7 +17,7 @@ const keyArrayMessages = 'chatInLocalStorage'
 //   localStorage.setItem(keyArrayMessages, JSON.stringify(chatHistory))
 // }
 
-const template = document.createElement('template')
+const template = document.createElement('template');
 template.innerHTML = `
     <style>
         form-input {
@@ -128,104 +128,101 @@ template.innerHTML = `
     <form>
         <div class="chat"></div>
     </form>
-`
+`;
 
 class MessageForm extends HTMLElement {
-  constructor() {
-    super()
-    this._shadowRoot = this.attachShadow({ mode: 'open' })
-    this._shadowRoot.appendChild(template.content.cloneNode(true))
-    this.$form = this._shadowRoot.querySelector('form')
-    // this.$input = this._shadowRoot.querySelector('form-input')
-    this.$form.appendChild(document.createElement('form-input'))
-    this.$input = this.$form.querySelector('form-input')
-    this.$input.setAttribute('name', 'message-text')
-    this.$input.setAttribute('placeholder', 'Сообщение')
-    this.$message = this._shadowRoot.querySelector('.chat')
+	constructor() {
+		super();
+		this._shadowRoot = this.attachShadow({ mode: 'open' });
+		this._shadowRoot.appendChild(template.content.cloneNode(true));
+		this.$form = this._shadowRoot.querySelector('form');
+		// this.$input = this._shadowRoot.querySelector('form-input')
+		this.$form.appendChild(document.createElement('form-input'));
+		this.$input = this.$form.querySelector('form-input');
+		this.$input.setAttribute('name', 'message-text');
+		this.$input.setAttribute('placeholder', 'Сообщение');
+		this.$message = this._shadowRoot.querySelector('.chat');
 
-    this.$idChat = 0
-    this.$keyArrayMessages = 'chatsArray'
-    // this.chatRender()
-    // this.saveMessageInLocalStorage = saveMessageInLocalStorage.bind(this)
+		this.$idChat = 0;
+		this.$keyArrayMessages = 'chatsArray';
+		// this.chatRender()
+		// this.saveMessageInLocalStorage = saveMessageInLocalStorage.bind(this)
 
+		this.$form.addEventListener('submit', this._onSubmit.bind(this));
+		this.$form.addEventListener('keypress', this._onKeyPress.bind(this));
+	}
 
-    this.$form.addEventListener('submit', this._onSubmit.bind(this))
-    this.$form.addEventListener('keypress', this._onKeyPress.bind(this))
-  }
+	_onSubmit(event) {
+		event.preventDefault();
+		if (this.$input.value.length > 0) {
+			const messageObj = {};
+			messageObj.text = this.$input.value;
+			messageObj.author = 'owner';
+			messageObj.time = new Date();
+			this.$input.value = '';
+			this.addMessage(messageObj);
+			this.saveMessageInLocalStorage(messageObj);
+		}
+	}
 
-  _onSubmit(event) {
-    event.preventDefault()
-    if (this.$input.value.length > 0) {
-      const messageObj = {}
-      messageObj.text = this.$input.value
-      messageObj.author = 'owner'
-      messageObj.time = new Date()
-      this.$input.value = ''
-      this.addMessage(messageObj)
-      this.saveMessageInLocalStorage(messageObj)
-    }
-  }
+	_onKeyPress(event) {
+		if (event.keyCode == 13) {
+			this.$form.dispatchEvent(new Event('submit'));
+		}
+	}
 
-  _onKeyPress(event) {
-    if (event.keyCode == 13) {
-      this.$form.dispatchEvent(new Event('submit'))
-    }
-  }
+	addMessage(messageObj) {
+		const $messageContainer = document.createElement('div');
+		if (messageObj.author === 'owner') {
+			$messageContainer.className = 'my_chat-box';
+		} else {
+			$messageContainer.className = 'opponent_chat-box';
+		}
+		const $messageText = document.createElement('div');
+		$messageText.className = 'message-text';
+		const $messageAuthor = document.createElement('div');
+		$messageAuthor.className = 'message-author';
+		const $messageTime = document.createElement('div');
+		$messageTime.className = 'message-time';
 
-  addMessage(messageObj) {
-    const $messageContainer = document.createElement('div')
-    if (messageObj.author === 'owner') {
-      $messageContainer.className = 'my_chat-box'
-    } else {
-      $messageContainer.className = 'opponent_chat-box'
-    }
-    const $messageText = document.createElement('div')
-    $messageText.className = 'message-text'
-    const $messageAuthor = document.createElement('div')
-    $messageAuthor.className = 'message-author'
-    const $messageTime = document.createElement('div')
-    $messageTime.className = 'message-time'
+		const date = new Date(messageObj.time);
+		const hours = date.getHours();
+		let minutes = date.getMinutes();
+		minutes = minutes < 10 ? `0${minutes}` : minutes;
 
-    const date = new Date(messageObj.time)
-    const hours = date.getHours()
-    let minutes = date.getMinutes()
-    minutes = (minutes < 10) ? (`0${minutes}`) : minutes
+		$messageText.innerHTML = messageObj.text;
+		$messageAuthor.innerHTML = messageObj.author;
+		$messageTime.innerHTML = `${hours}:${minutes}`;
 
-    $messageText.innerHTML = messageObj.text
-    $messageAuthor.innerHTML = messageObj.author
-    $messageTime.innerHTML = `${hours}:${minutes}`
+		$messageContainer.appendChild($messageAuthor);
+		$messageContainer.appendChild($messageText);
+		$messageContainer.appendChild($messageTime);
+		this.$message.appendChild($messageContainer);
+		this.$message.scrollTop = 9999;
+	}
 
-    $messageContainer.appendChild($messageAuthor)
-    $messageContainer.appendChild($messageText)
-    $messageContainer.appendChild($messageTime)
-    this.$message.appendChild($messageContainer)
-    this.$message.scrollTop = 9999
-  }
+	saveMessageInLocalStorage(messageObj) {
+		// let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
 
-  saveMessageInLocalStorage(messageObj) {
-    // let chatHistory = localStorage.getItem(keyArrayMessages); // без JSON
+		let chatHistory = JSON.parse(localStorage.getItem(this.$keyArrayMessages));
 
-    let chatHistory = JSON.parse(localStorage.getItem(this.$keyArrayMessages))
+		if (chatHistory === null) {
+			chatHistory = [];
+		}
+		chatHistory[this.$idChat].messages.push(messageObj);
+		localStorage.setItem(this.$keyArrayMessages, JSON.stringify(chatHistory));
+	}
 
-    if (chatHistory === null) {
-      chatHistory = []
-    }
-    chatHistory[this.$idChat].messages.push(messageObj)
-    localStorage.setItem(this.$keyArrayMessages, JSON.stringify(chatHistory))
-  }
-
-  chatRender() {
-    const chatHistory = JSON.parse(localStorage.getItem(this.$keyArrayMessages))
-    if (chatHistory === null) {
-      return
-    }
-    const chatObj = chatHistory[this.$idChat]
-    for (let iterCellStorage = 0; iterCellStorage < chatObj.messages.length; iterCellStorage+=1) {
-      this.addMessage(chatObj.messages[iterCellStorage])
-    }
-
-  }
+	chatRender() {
+		const chatHistory = JSON.parse(localStorage.getItem(this.$keyArrayMessages));
+		if (chatHistory === null) {
+			return;
+		}
+		const chatObj = chatHistory[this.$idChat];
+		for (let iterCellStorage = 0; iterCellStorage < chatObj.messages.length; iterCellStorage += 1) {
+			this.addMessage(chatObj.messages[iterCellStorage]);
+		}
+	}
 }
 
-
-customElements.define('message-form', MessageForm)
+customElements.define('message-form', MessageForm);

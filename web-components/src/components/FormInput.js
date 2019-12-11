@@ -1,7 +1,7 @@
 /* eslint no-underscore-dangle:
 ["error", { "allow": ["_shadowRoot", "_onKeyPress", "_onSubmit"] }]
 */
-const template = document.createElement('template')
+const template = document.createElement('template');
 template.innerHTML = `
     <style>
         input {
@@ -23,32 +23,32 @@ template.innerHTML = `
         }
     </style>
     <input type="text">
-`
+`;
 
 class FormInput extends HTMLElement {
-  constructor() {
-    super()
-    this._shadowRoot = this.attachShadow({ mode: 'open' })
-    this._shadowRoot.appendChild(template.content.cloneNode(true))
+	constructor() {
+		super();
+		this._shadowRoot = this.attachShadow({ mode: 'open' });
+		this._shadowRoot.appendChild(template.content.cloneNode(true));
 
-    this.$input = this._shadowRoot.querySelector('input')
-  }
+		this.$input = this._shadowRoot.querySelector('input');
+	}
 
-  static get observedAttributes() {
-    return ['name', 'value', 'placeholder', 'disabled']
-  }
+	static get observedAttributes() {
+		return ['name', 'value', 'placeholder', 'disabled'];
+	}
 
-  attributeChangedCallback(name, oldValue, newValue) {
-    this.$input.setAttribute(name, newValue)
-  }
+	attributeChangedCallback(name, oldValue, newValue) {
+		this.$input.setAttribute(name, newValue);
+	}
 
-  set value(_newValue) {
-    this.$input.value = _newValue
-  }
+	set value(_newValue) {
+		this.$input.value = _newValue;
+	}
 
-  get value() {
-    return this.$input.value
-  }
+	get value() {
+		return this.$input.value;
+	}
 }
 
-customElements.define('form-input', FormInput)
+customElements.define('form-input', FormInput);

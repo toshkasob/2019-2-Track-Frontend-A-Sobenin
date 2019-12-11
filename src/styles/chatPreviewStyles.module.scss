@@ -1,0 +1,91 @@
+:root {
+  --opponent-name-font-size: 3vh;
+  --last-message-text-font-size: 2vh;
+}
+
+.chat_preview {
+  min-height: 11vh;
+  line-height: 11vh;
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  user-select: none;
+  text-decoration: none;
+  color: inherit;
+
+  &:focus,
+  &:hover {
+    transition: 0.5s;
+    background: rgb(173, 216, 230); // lightblue
+  }
+
+  &:active {
+    transition: 0.1s;
+    background: rgba(0, 0, 0, 0.3);
+  }
+}
+
+.opponent_face {
+  height: 100%;
+  line-height: 11vh;
+  align-self: center;
+  margin-left: 1vh;
+  color: rgb(147, 112, 216); // mediumpurple
+}
+
+.opponent_logo {
+  width: 7vh;
+  height: 90%;
+  fill: currentColor;
+  padding-top: 5%;
+}
+
+.text_info {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  margin-left: 2vh;
+  overflow: hidden;
+}
+
+.message_preview {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 2vh;
+  overflow: hidden;
+}
+
+.opponent_name {
+  line-height: 4vh;
+  font-size: var(--opponent-name-font-size);
+  font-weight: 550;
+  overflow: hidden;
+}
+
+.lastmessage_text {
+  line-height: 4vh;
+  font-size: var(--last-message-text-font-size);
+  color: rgba(0, 0, 0, 0.6);
+  overflow: hidden;
+}
+
+.lastmessage_info {
+  line-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+  margin-right: 3vh;
+}
+
+.lastmessage_time {
+  line-height: 4vh;
+  font-size: var(--last-message-text-font-size);
+}

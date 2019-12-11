@@ -1,0 +1,66 @@
+.chats_list {
+  display: flex;
+  flex-direction: column;
+  height: 91vh;
+  overflow-y: scroll;
+}
+
+.create_chat {
+  position: fixed;
+  right: 3vh;
+  bottom: 3vh;
+  width: 8vh;
+  height: 8vh;
+  border-radius: 100%;
+  color: rgba(0, 0, 0, 0.6);
+  background-color: rgb(154, 205, 50); // yellowgreen
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.8);
+  transition: 0.2s;
+  animation-name: slide-create-chat;
+  animation-duration: 0.5s;
+
+  &:focus,
+  &:hover {
+    animation-name: pulse;
+    animation-duration: 2s;
+    animation-iteration-count: infinite;
+    background-color: rgb(127, 255, 212); // aquamarine
+  }
+
+  &:active {
+    background: rgb(0, 255, 255); // aqua
+  }
+}
+
+.create_chat_img {
+  width: 50%;
+  height: 50%;
+}
+
+@keyframes slide-create-chat {
+  0% {
+    transform: scale(0);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgb(154, 205, 50); // yellowgreen
+  }
+
+  70% {
+    box-shadow: 0 0 0 10px rgba(204, 169, 44, 0);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 rgba(204, 169, 44, 0);
+  }
+}

@@ -1,0 +1,123 @@
+:root {
+  --z-index-for-header: 1;
+  --bg-color: rgb(128, 0, 128); // purple
+  --white-color: rgb(255, 255, 255);
+  --black-color: rgb(0, 0, 0);
+  --header-title-font-size: 4vh;
+  --opponent-name-font-size: 3vh;
+  --opponent-status-font-size: 2vh;
+}
+
+.app_header {
+  z-index: var(--z-index-for-header);
+  height: 9vh;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  background-color: var(--main-bg-color);
+  box-shadow: 0 0 5px 2px;
+  user-select: none;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  height: 6vh;
+  width: 6vh;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgb(211, 211, 211); // grey
+  background-color: var(--main-bg-color);
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 100%;
+  transition: 0.2s;
+  margin: 3%;
+
+  &:focus {
+    color: rgb(255, 255, 255);
+  }
+
+  &:hover {
+    background-color: rgb(0, 0, 0);
+    animation-name: button-hover-animation;
+    animation-duration: 0.4s;
+    animation-timing-function: linear;
+  }
+
+  &:active {
+    background: rgb(255, 255, 0); // yellow
+  }
+}
+
+.button_img {
+  height: 4vh;
+  width: 4vh;
+  fill: currentColor;
+}
+
+.header {
+  line-height: 6vh;
+  font-weight: 600;
+  margin-left: -20vw;
+  font-size: var(--header-title-font-size);
+  color: rgb(255, 255, 255);
+}
+
+.opponent {
+  height: 100%;
+  flex-grow: 15;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.opponent_face {
+  height: 100%;
+  display: flex;
+  margin-right: 2vh;
+  align-items: center;
+}
+
+.opponent_info {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  user-select: none;
+}
+
+.opponent_name {
+  max-width: 40vw;
+  line-height: 4vh;
+  font-weight: 700;
+  font-size: var(--opponent-name-font-size);
+  color: rgb(255, 255, 255);
+  overflow-x: hidden;
+}
+
+.opponent_status {
+  font-size: var(--opponent-status-font-size);
+  font-weight: 200;
+  color: rgb(209, 167, 221);
+  align-self: center;
+  overflow-x: hidden;
+}
+
+.opponent_logo {
+  width: 7vh;
+  height: 7vh;
+  fill: rgb(255, 255, 255);
+}
+
+@keyframes button-hover-animation {
+  0% {
+    box-shadow: 0 0 0 6vh inset var(--main-bg-color);
+  }
+
+  100% {
+    box-shadow: 0 0 0 0 inset var(--main-bg-color);
+  }
+}
