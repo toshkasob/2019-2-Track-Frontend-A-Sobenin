@@ -13,7 +13,7 @@ export default class AppContainer extends React.Component {
 	render() {
 		return (
 			<div className="my_messenger">
-				<Router>
+				<Router basename="/">
 					<Switch>
 						<Route path="/chat_id=:chatId">
 							<ChatHeader />
