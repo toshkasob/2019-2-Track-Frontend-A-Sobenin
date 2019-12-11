@@ -1,6 +1,6 @@
 /* eslint-disable react/prefer-stateless-function */
 import React from 'react';
-import { HashRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import ChatsList from '../components/ChatsList';
 import MessageForm from '../components/MessageForm';
 import '../styles/globalStyles.css';
