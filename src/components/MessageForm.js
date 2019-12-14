@@ -23,6 +23,37 @@ export default function MessageForm(props) {
 		}
 	}
 
+	function handleAttachGeo() {
+		if (!navigator.geolocation) {
+			alert('Geolocation is not supported by your browser =(');
+		} else {
+			const geoSuccess = (position) => {
+				const { latitude, longitude } = position.coords;
+				const posGeo = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
+				const messageObj = createMessageObj(posGeo);
+				addMessage(messageObj);
+				messageToLocal(messageObj);
+			};
+
+			const geoError = (error) => {
+				alert('Unable to retrieve your location... Try again =)');
+				console.log(error.message);
+			};
+
+			const geoOptions = {
+				enableHighAccuracy: true,
+				maximumAge: 60000,
+				timeout: 15000,
+			};
+
+			navigator.geolocation.getCurrentPosition(
+				geoSuccess,
+				geoError,
+				geoOptions,
+			);
+		}
+	}
+
 	function handleSubmit(event) {
 		event.preventDefault();
 		letSubmitButtonShow('none');
@@ -67,7 +98,9 @@ export default function MessageForm(props) {
 			position = 'left_messages';
 		}
 
-		const messageTime = new Date(messageObj.messageTime).toTimeString().slice(0, 5);
+		const messageTime = new Date(messageObj.messageTime)
+			.toTimeString()
+			.slice(0, 5);
 
 		const resultMessage = (
 			<MessageUnit
@@ -112,6 +145,7 @@ export default function MessageForm(props) {
 					placeholder="Сообщение"
 					value={inputValue}
 					onChange={handleChange}
+					attachGeo={handleAttachGeo}
 					submitButtonDisplayStyle={submitButtonDisplayStyle}
 				/>
 			</form>

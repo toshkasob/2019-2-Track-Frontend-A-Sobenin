@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/formInputStyles.module.scss';
 
-// import { ReactComponent as AttachSvg } from '../images/forminput_buttons/attach_button.svg';
 import { ReactComponent as SubmitSvg } from '../images/button_submit.svg';
+import { ReactComponent as GeoSvg } from '../images/button_geo.svg';
 
 export default function FormInput(props) {
 	const curProps = props;
@@ -20,6 +20,13 @@ export default function FormInput(props) {
 				onChange={curProps.onChange}
 			/>
 			<button
+				type="button"
+				className={styles.button_attach}
+				onClick={curProps.attachGeo}
+			>
+				<GeoSvg className={styles.button_attach_img} />
+			</button>
+			<button
 				type="submit"
 				className={styles.button_submit}
 				style={{ display: curProps.submitButtonDisplayStyle }}
@@ -32,6 +39,7 @@ export default function FormInput(props) {
 
 FormInput.propTypes = {
 	submitButtonDisplayStyle: PropTypes.string.isRequired,
+	attachGeo: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	placeholder: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
