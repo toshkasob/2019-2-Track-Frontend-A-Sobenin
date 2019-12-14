@@ -18,6 +18,35 @@
   font-size: var(--input-font-size);
 }
 
+.button_attach {
+  display: inline-block;
+  background-color: inherit;
+  cursor: pointer;
+  border: none;
+  outline: none;
+  border-radius: 100%;
+  color: var(--main-bg-color);
+  overflow: visible;
+
+  &:focus {
+    color: rgba(142, 36, 170, 0.8);
+  }
+
+  &:hover {
+    color: rgba(142, 36, 170, 0.7);
+  }
+
+  &:active {
+    background: rgba(0, 0, 0, 0.2);
+  }
+}
+
+.button_attach_img {
+  height: 4vh;
+  padding-top: 4px;
+  fill: currentColor;
+}
+
 .button_submit {
   display: none;
   background-color: inherit;
