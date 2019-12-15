@@ -1,3 +1,4 @@
+/* eslint no-param-reassign: ["error", {"ignorePropertyModificationsForRegex": ["^event"]}] */
 import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import FormInput from './FormInput';
@@ -69,6 +70,18 @@ export default function MessageForm(props) {
 		} else {
 			alert('Sorry. Try another IMAGE with size (0, 5000000] bytes');
 		}
+	}
+
+	function preventAndStop(event) {
+		event.stopPropagation();
+		event.preventDefault();
+		event.dataTransfer.dropEffect = 'copy';
+	}
+
+	function dropImage(event) {
+		preventAndStop(event);
+		const { files } = event.dataTransfer;
+		handleImage(event, files);
 	}
 
 	function handleRecordAudio() {
@@ -233,7 +246,14 @@ export default function MessageForm(props) {
 	return (
 		<div className={styles.message_form}>
 			<form className={styles.form_chat} onSubmit={handleSubmit}>
-				<div className={styles.chat_container}>{messagesReact()}</div>
+				<div
+					className={styles.chat_container}
+					onDragEnter={preventAndStop}
+					onDragOver={preventAndStop}
+					onDrop={dropImage}
+				>
+					{messagesReact()}
+				</div>
 				<FormInput
 					placeholder="Сообщение"
 					value={inputValue}
