@@ -5,8 +5,12 @@ import styles from '../styles/formInputStyles.module.scss';
 
 import { ReactComponent as SubmitSvg } from '../images/button_submit.svg';
 import { ReactComponent as GeoSvg } from '../images/button_geo.svg';
+import { ReactComponent as StartRecSvg } from '../images/button_rec_audio.svg';
+import { ReactComponent as FinishRecSvg } from '../images/button_stop_audio.svg';
+import { ReactComponent as ImgSvg } from '../images/button_attach_image.svg';
 
 export default function FormInput(props) {
+	const imgInput = React.createRef();
 	const curProps = props;
 
 	return (
@@ -21,11 +25,48 @@ export default function FormInput(props) {
 			/>
 			<button
 				type="button"
+				id="get-geo"
 				className={styles.button_attach}
 				onClick={curProps.attachGeo}
 			>
 				<GeoSvg className={styles.button_attach_img} />
 			</button>
+			<button
+				type="button"
+				id="attach-image"
+				className={styles.button_attach}
+				onClick={(e) => {
+					if (imgInput) {
+						imgInput.current.click();
+					}
+				}}
+			>
+				<ImgSvg className={styles.button_attach_img} />
+			</button>
+			<input
+				type="file"
+				ref={imgInput}
+				accept="image/*"
+				style={{ display: 'none' }}
+				onChange={curProps.handleImage}
+			/>
+			<button
+				type="button"
+				id="start"
+				className={styles.button_attach}
+				onClick={curProps.handleRecordAudio}
+			>
+				<StartRecSvg className={styles.button_attach_img} />
+			</button>
+			<button
+				type="button"
+				id="stop"
+				className={styles.button_attach}
+				style={{ display: 'none' }}
+			>
+				<FinishRecSvg className={styles.button_attach_img} />
+			</button>
+
 			<button
 				type="submit"
 				className={styles.button_submit}
@@ -40,6 +81,8 @@ export default function FormInput(props) {
 FormInput.propTypes = {
 	submitButtonDisplayStyle: PropTypes.string.isRequired,
 	attachGeo: PropTypes.func.isRequired,
+	handleImage: PropTypes.func.isRequired,
+	handleRecordAudio: PropTypes.func.isRequired,
 	onChange: PropTypes.func.isRequired,
 	placeholder: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,
