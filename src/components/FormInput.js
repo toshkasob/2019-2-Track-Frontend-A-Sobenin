@@ -22,12 +22,14 @@ export default function FormInput(props) {
 				value={curProps.value}
 				placeholder={curProps.placeholder}
 				onChange={curProps.onChange}
+				disabled={curProps.flagRec.isBlocked}
 			/>
 			<button
 				type="button"
 				id="get-geo"
 				className={styles.button_attach}
 				onClick={curProps.attachGeo}
+				disabled={curProps.flagRec.isBlocked}
 			>
 				<GeoSvg className={styles.button_attach_img} />
 			</button>
@@ -35,6 +37,7 @@ export default function FormInput(props) {
 				type="button"
 				id="attach-image"
 				className={styles.button_attach}
+				disabled={curProps.flagRec.isBlocked}
 				onClick={(e) => {
 					if (imgInput) {
 						imgInput.current.click();
@@ -55,6 +58,7 @@ export default function FormInput(props) {
 				id="start"
 				className={styles.button_attach}
 				onClick={curProps.handleRecordAudio}
+				style={{ display: curProps.flagRec.startRec }}
 			>
 				<StartRecSvg className={styles.button_attach_img} />
 			</button>
@@ -62,7 +66,8 @@ export default function FormInput(props) {
 				type="button"
 				id="stop"
 				className={styles.button_attach}
-				style={{ display: 'none' }}
+				style={{ display: curProps.flagRec.stopRec }}
+				onClick={curProps.handleStopRecord}
 			>
 				<FinishRecSvg className={styles.button_attach_img} />
 			</button>
@@ -71,6 +76,7 @@ export default function FormInput(props) {
 				type="submit"
 				className={styles.button_submit}
 				style={{ display: curProps.submitButtonDisplayStyle }}
+				disabled={curProps.flagRec.isBlocked}
 			>
 				<SubmitSvg className={styles.button_submit_img} />
 			</button>
@@ -83,6 +89,8 @@ FormInput.propTypes = {
 	attachGeo: PropTypes.func.isRequired,
 	handleImage: PropTypes.func.isRequired,
 	handleRecordAudio: PropTypes.func.isRequired,
+	handleStopRecord: PropTypes.func.isRequired,
+	flagRec: PropTypes.any.isRequired,
 	onChange: PropTypes.func.isRequired,
 	placeholder: PropTypes.string.isRequired,
 	value: PropTypes.string.isRequired,

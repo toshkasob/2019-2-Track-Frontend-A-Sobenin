@@ -9,9 +9,11 @@ const keyArrayChats = 'chatsArray';
 
 export default function MessageForm(props) {
 	const { chatId } = useParams();
+	const mediaRecorder = React.useRef(null);
 
 	const [submitButtonDisplayStyle, letSubmitButtonShow] = useState('none');
 	const [inputValue, setInputValue] = useState('');
+	const [flagRec, setFlagRec] = useState(recordInit);
 	const [messages, setMessages] = useState(messagesInit);
 
 	function handleChange(event) {
@@ -84,41 +86,32 @@ export default function MessageForm(props) {
 		handleImage(event, files);
 	}
 
-	function handleRecordAudio() {
-		function manageEnter(enable) {
-			const input = document.getElementById('input');
-			const buttonImage = document.getElementById('attach-image');
-			const buttonGeo = document.getElementById('get-geo');
+	function recordInit() {
+		return {
+			startRec: 'inline-block',
+			stopRec: 'none',
+			isBlocked: false,
+		};
+	}
+	function handleStopRecord() {
+		// debugger;
+		setFlagRec({
+			startRec: 'inline-block',
+			stopRec: 'none',
+			isBlocked: false,
+		});
 
-			if (enable === false) {
-				input.disabled = true;
-				buttonImage.disabled = true;
-				buttonGeo.disabled = true;
-			} else {
-				input.removeAttribute('disabled');
-				buttonImage.removeAttribute('disabled');
-				buttonGeo.removeAttribute('disabled');
-			}
-		}
-
-		function recordAudio(stream) {
-			const buttonStartRec = document.getElementById('start');
-			const buttonFinishRec = document.getElementById('stop');
-			const mediaRecorder = new MediaRecorder(stream);
-			mediaRecorder.start();
-
-			buttonFinishRec.style.display = 'inline-block';
-			buttonStartRec.style.display = 'none';
-
-			manageEnter(false);
+		function stopRecord() {
+			// debugger;
+			mediaRecorder.current.stop();
 
 			let chunks = [];
 
-			mediaRecorder.addEventListener('dataavailable', (event) => {
+			mediaRecorder.current.addEventListener('dataavailable', (event) => {
 				chunks.push(event.data);
 			});
 
-			mediaRecorder.addEventListener('stop', () => {
+			mediaRecorder.current.addEventListener('stop', () => {
 				const blob = new Blob(chunks, { type: mediaRecorder.mimeType });
 				chunks = [];
 				const audioURL = URL.createObjectURL(blob);
@@ -130,17 +123,25 @@ export default function MessageForm(props) {
 					body: data,
 				});
 			});
+		}
 
-			buttonFinishRec.addEventListener(
-				'click',
-				() => {
-					mediaRecorder.stop();
-					buttonFinishRec.style.display = 'none';
-					buttonStartRec.style.display = 'inline-block';
-					manageEnter(true);
-				},
-				{ once: true },
-			);
+		stopRecord();
+	}
+
+	function handleRecordAudio() {
+		// debugger;
+		setFlagRec({
+			startRec: 'none',
+			stopRec: 'inline-block',
+			isBlocked: true,
+		});
+
+		function recordAudio(stream) {
+			// debugger;
+
+			mediaRecorder.current = new MediaRecorder(stream);
+			mediaRecorder.current.start();
+			// debugger;
 		}
 
 		async function getMedia() {
@@ -261,6 +262,8 @@ export default function MessageForm(props) {
 					attachGeo={handleAttachGeo}
 					handleImage={handleImage}
 					handleRecordAudio={handleRecordAudio}
+					handleStopRecord={handleStopRecord}
+					flagRec={flagRec}
 					submitButtonDisplayStyle={submitButtonDisplayStyle}
 				/>
 			</form>
