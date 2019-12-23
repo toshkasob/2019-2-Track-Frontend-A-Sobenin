@@ -2,6 +2,18 @@
   --author-font-size: 1em;
   --text-font-size: calc(2vh + 10px);
   --time-font-size: 1em;
+  --links-text-size: 0.6em;
+}
+
+.link {
+  display: inline;
+  font-size: var(--links-text-size);
+}
+
+.image {
+  max-height: 40vh;
+  max-width: 60vw;
+  margin: 1vh;
 }
 
 .message_unit {
