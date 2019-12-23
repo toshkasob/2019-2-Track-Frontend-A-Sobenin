@@ -17,6 +17,9 @@ export default function fetchWeather(props){
         method: 'GET',
     });
     const weatherJson = response.json();
-    props.weather = weatherJson;
+    this.setState({
+        weather: weatherJson
+    });
+    // props.weather = weatherJson;
 
 }
