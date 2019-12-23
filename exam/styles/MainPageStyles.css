@@ -1,0 +1,33 @@
+:root {
+    --input-font-size: 3vh;
+}
+  
+.form_input {
+    height: 6vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding-left: 1vw;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+}
+  
+.input {
+    border: 0;
+    outline: none;
+    width: calc(100% - 2px);
+    font-size: var(--input-font-size);
+}
+
+.form_city {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.form_page {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+  
