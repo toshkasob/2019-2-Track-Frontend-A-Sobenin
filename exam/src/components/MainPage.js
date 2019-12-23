@@ -29,8 +29,6 @@ export default function MainPage(props){
 		} else {
 			const geoSuccess = (position) => {
                 const { latitude, longitude } = position.coords;
-                curProps.latitude = latitude;
-                curProps.longitude = longitude;
                 const posGeo = `https://www.openstreetmap.org/#map=18/${latitude}/${longitude}`;
                 alert(posGeo);
 			};
@@ -76,9 +74,6 @@ export default function MainPage(props){
                 </button>
 
             </form>
-        </div>
-        <div className={styles.weather_in_city}>
-            
         </div>
     )
 }
