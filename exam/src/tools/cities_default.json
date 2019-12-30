@@ -1,0 +1,39 @@
+{
+    "cities_default": [
+    {
+        "id": 524901,
+        "name": "Moscow",
+        "country": "RU",
+        "coord": {
+        "lon": 37.615555,
+        "lat": 55.75222
+        }
+    },
+    {
+        "id": 571476,
+        "name": "Bryansk",
+        "country": "RU",
+        "coord": {
+        "lon": 34.380562,
+        "lat": 53.287498
+        }
+    },
+    {
+        "id": 534595,
+        "name": "Lobnya",
+        "country": "RU",
+        "coord": {
+        "lon": 37.481941,
+        "lat": 56.00972
+        }
+    },
+    {
+        "id": 7261214,
+        "name": "Malmstrom Air Force Base",
+        "country": "US",
+        "coord": {
+          "lon": -111.183022,
+          "lat": 47.505489
+        }
+    }
+]}
