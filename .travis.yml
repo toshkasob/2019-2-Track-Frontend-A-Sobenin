@@ -17,4 +17,4 @@ deploy:
     branch:
       - master
       - devel
-      - HomeWork7
+      - 2nd_HW1
