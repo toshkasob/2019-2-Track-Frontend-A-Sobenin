@@ -25,7 +25,7 @@ export const DummyInput = () => (
 export const Input = () => (
 	<FormInput
 		placeholder="Сообщение"
-		value="No audio record"
+		value="Some text"
 		onChange={fnMock}
 		attachGeo={fnMock}
 		handleImage={fnMock}
