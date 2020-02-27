@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders text message correctly 1`] = `
+<div>
+  <div
+    className="message_unit right_messages"
+  >
+    <div
+      className="message_author"
+    >
+      Owner
+    </div>
+    <div
+      className="message_text"
+    >
+      Good night!
+    </div>
+    <div
+      className="message_info"
+    >
+      <span
+        className="message_time"
+      >
+        01:00
+      </span>
+    </div>
+  </div>
+</div>
+`;
