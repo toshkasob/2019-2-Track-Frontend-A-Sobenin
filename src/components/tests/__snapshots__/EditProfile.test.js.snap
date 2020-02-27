@@ -1,0 +1,80 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders EditProfile correctly 1`] = `
+<div>
+  <form
+    className="edit_profile"
+    id="edit_profile"
+    onSubmit={[Function]}
+  >
+    <div
+      className="profile_img_preview"
+    >
+      <svg
+        className="profile_img"
+      >
+        camera_img.svg
+      </svg>
+    </div>
+    <div
+      className="profile_input_div fullname_input_div"
+    >
+      <span
+        className="input_info"
+      >
+        Full name
+      </span>
+      <input
+        className="profile_input"
+      />
+    </div>
+    <div
+      className="comment2input_div"
+    />
+    <div
+      className="profile_input_div username_input_div"
+    >
+      <span
+        className="input_info"
+      >
+        Username
+      </span>
+      <input
+        className="profile_input"
+        onInvalid={[Function]}
+        pattern="^[a-z][a-z0-9-_\\\\.]{4,32}$"
+      />
+    </div>
+    <div
+      className="comment2input_div"
+    >
+      <span
+        className="comment2input"
+      >
+        At least 5 and no more 32 letters or digits
+      </span>
+    </div>
+    <div
+      className="profile_input_div biodetails_input_div"
+    >
+      <span
+        className="input_info"
+      >
+        Bio
+      </span>
+      <textarea
+        className="profile_input"
+      />
+    </div>
+    <div
+      className="comment2input_div"
+    >
+      <span
+        className="comment2input"
+      >
+        Any details about you
+      </span>
+    </div>
+  </form>
+</div>
+`;
