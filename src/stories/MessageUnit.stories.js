@@ -17,3 +17,13 @@ export const Message = () => (
 		position="right_messages"
 	/>
 );
+const curDateGeo = new Date().toTimeString().slice(0, 5);
+export const MessageGeo = () => (
+	<MessageUnit
+		messageAuthor="Owner"
+		contentType="text"
+		messageContent="http://www.openstreetmap.org/#map=18/56.01226806640625/37.47481918334961"
+		messageTime={curDateGeo}
+		position="right_messages"
+	/>
+);
