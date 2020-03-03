@@ -1,0 +1,201 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders FormInput with dummy input correctly 1`] = `
+<div>
+  <div
+    className="form_input"
+  >
+    <input
+      className="input"
+      id="input"
+      onChange={[MockFunction]}
+      placeholder="Сообщение"
+      type="text"
+      value=""
+    />
+    <button
+      className="button_attach"
+      id="get-geo"
+      onClick={[MockFunction]}
+      type="button"
+    >
+      <svg
+        className="button_attach_img"
+      >
+        button_geo.svg
+      </svg>
+    </button>
+    <button
+      className="button_attach"
+      id="attach-image"
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        className="button_attach_img"
+      >
+        button_attach_image.svg
+      </svg>
+    </button>
+    <input
+      accept="image/*"
+      onChange={[MockFunction]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+      type="file"
+    />
+    <button
+      className="button_attach"
+      id="start"
+      onClick={[MockFunction]}
+      style={
+        Object {
+          "display": undefined,
+        }
+      }
+      type="button"
+    >
+      <svg
+        className="button_attach_img"
+      >
+        button_rec_audio.svg
+      </svg>
+    </button>
+    <button
+      className="button_attach"
+      id="stop"
+      onClick={[MockFunction]}
+      style={
+        Object {
+          "display": undefined,
+        }
+      }
+      type="button"
+    >
+      <svg
+        className="button_attach_img"
+      >
+        button_stop_audio.svg
+      </svg>
+    </button>
+    <button
+      className="button_submit"
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+      type="submit"
+    >
+      <svg
+        className="button_submit_img"
+      >
+        button_submit.svg
+      </svg>
+    </button>
+  </div>
+</div>
+`;
+
+exports[`renders FormInput with some text correctly 1`] = `
+<div>
+  <div
+    className="form_input"
+  >
+    <input
+      className="input"
+      id="input"
+      onChange={[MockFunction]}
+      placeholder="Сообщение"
+      type="text"
+      value="Some text"
+    />
+    <button
+      className="button_attach"
+      id="get-geo"
+      onClick={[MockFunction]}
+      type="button"
+    >
+      <svg
+        className="button_attach_img"
+      >
+        button_geo.svg
+      </svg>
+    </button>
+    <button
+      className="button_attach"
+      id="attach-image"
+      onClick={[Function]}
+      type="button"
+    >
+      <svg
+        className="button_attach_img"
+      >
+        button_attach_image.svg
+      </svg>
+    </button>
+    <input
+      accept="image/*"
+      onChange={[MockFunction]}
+      style={
+        Object {
+          "display": "none",
+        }
+      }
+      type="file"
+    />
+    <button
+      className="button_attach"
+      id="start"
+      onClick={[MockFunction]}
+      style={
+        Object {
+          "display": undefined,
+        }
+      }
+      type="button"
+    >
+      <svg
+        className="button_attach_img"
+      >
+        button_rec_audio.svg
+      </svg>
+    </button>
+    <button
+      className="button_attach"
+      id="stop"
+      onClick={[MockFunction]}
+      style={
+        Object {
+          "display": undefined,
+        }
+      }
+      type="button"
+    >
+      <svg
+        className="button_attach_img"
+      >
+        button_stop_audio.svg
+      </svg>
+    </button>
+    <button
+      className="button_submit"
+      style={
+        Object {
+          "display": "inline-block",
+        }
+      }
+      type="submit"
+    >
+      <svg
+        className="button_submit_img"
+      >
+        button_submit.svg
+      </svg>
+    </button>
+  </div>
+</div>
+`;
