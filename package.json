@@ -26,6 +26,8 @@
 		"@storybook/preset-create-react-app": "^1.5.2",
 		"@storybook/react": "^5.3.13",
 		"@wemake-services/stylelint-config-scss": "^0.1.4",
+		"babel-plugin-lodash": "^3.3.4",
+		"babel-plugin-styled-components": "^1.10.7",
 		"check-engine": "^1.8.0",
 		"eslint": "^6.6.0",
 		"eslint-config-airbnb": "^18.0.1",
