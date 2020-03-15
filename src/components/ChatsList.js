@@ -105,11 +105,11 @@ export default function ChatsList(props) {
 	}
 
 	return (
-		<div ref={chatslistRef} className={styles.chats_list}>
+		<div ref={chatslistRef} className={styles.chats_list} data-qa="my-chats">
 			{chats}
 			<button
 				type="button"
-				id="button-create-chat"
+				data-qa="button-create-chat"
 				className={styles.create_chat}
 				onClick={handleCreateChat}
 			>

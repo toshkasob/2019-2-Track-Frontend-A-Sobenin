@@ -252,6 +252,7 @@ export default function MessageForm(props) {
 					onDragEnter={preventAndStop}
 					onDragOver={preventAndStop}
 					onDrop={dropImage}
+					data-qa="my-messages-in-chat"
 				>
 					{messagesReact()}
 				</div>

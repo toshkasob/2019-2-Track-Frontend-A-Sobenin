@@ -9,10 +9,10 @@ describe('Send message in chat', () => {
 		await page.goto('http://localhost:3000/', { waitUntil: 'networkidle0' });
 	}, 100000);
 	it('should create new chat', async () => {
-		await expect(page).toClick('[class*="chats_list"] >:last-child');
+		await expect(page).toClick('[data-qa="button-create-chat"]');
 	}, 100000);
-	it('should open the first chat', async () => {
-		await expect(page).toClick('[class*="chats_list"] >:nth-last-child(2)');
+	it('should open the created chat', async () => {
+		await expect(page).toClick('[data-qa="link-to-chat"]:last-of-type');
 	}, 100000);
 	it('should write phrase "I can write this phrase" ', async () => {
 		await expect(page).toFill('input', 'I can write this phrase');
@@ -24,7 +24,7 @@ describe('Send message in chat', () => {
 
 	it('should check written phrase "I can write this phrase" ', async () => {
 		await expect(page).toMatchElement(
-			'[class*="chat_container"] > div:last-child > div:nth-child(2)',
+			'[data-qa="message-in-chat"]:last-of-type [data-qa="message-text"]',
 			{
 				text: 'I can write this phrase',
 			},
