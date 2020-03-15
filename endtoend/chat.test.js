@@ -6,7 +6,7 @@ describe('Send message in chat', () => {
 	beforeAll(async () => {
 		browser = await puppeteer.launch({ headless: true });
 		page = await browser.newPage();
-		await page.goto('http://localhost:3000/');
+		await page.goto('http://localhost:3000/', { waitUntil: 'networkidle0' });
 	}, 100000);
 	it('should create new chat', async () => {
 		await expect(page).toClick('[class*="chats_list"] >:last-child');
