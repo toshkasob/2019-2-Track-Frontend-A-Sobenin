@@ -18,7 +18,9 @@ export default function ChatsList(props) {
 		if (chatObj.messages.length !== 0) {
 			const lastmessageObj = chatObj.messages[chatObj.messages.length - 1];
 			lastmessageText = lastmessageObj.messageText;
-			lastmessageTime = new Date(lastmessageObj.messageTime).toTimeString().slice(0, 5);
+			lastmessageTime = new Date(lastmessageObj.messageTime)
+				.toTimeString()
+				.slice(0, 5);
 		}
 
 		const chatPreviewProps = {
@@ -103,9 +105,14 @@ export default function ChatsList(props) {
 	}
 
 	return (
-		<div ref={chatslistRef} className={styles.chats_list}>
+		<div ref={chatslistRef} className={styles.chats_list} data-qa="my-chats">
 			{chats}
-			<button type="button" className={styles.create_chat} onClick={handleCreateChat}>
+			<button
+				type="button"
+				data-qa="button-create-chat"
+				className={styles.create_chat}
+				onClick={handleCreateChat}
+			>
 				<CreateChatSvg className={styles.create_chat_img} />
 			</button>
 		</div>

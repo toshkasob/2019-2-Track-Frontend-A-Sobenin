@@ -25,7 +25,11 @@ function MessageContent(props) {
 			);
 		}
 
-		content = <div className={styles.message_text}>{parts}</div>;
+		content = (
+			<div data-qa="message-text" className={styles.message_text}>
+				{parts}
+			</div>
+		);
 	} else if (curProps.contentType === 'image') {
 		content = (
 			<img
@@ -66,6 +70,7 @@ export default function MessageUnit(props) {
 		<div
 			ref={message}
 			className={`${styles.message_unit} ${styles[curProps.position]}`}
+			data-qa="message-in-chat"
 		>
 			<div className={styles.message_author}>{curProps.messageAuthor}</div>
 			<MessageContent

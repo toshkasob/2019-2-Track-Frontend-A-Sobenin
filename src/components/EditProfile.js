@@ -27,7 +27,7 @@ export default function EditProfile(props) {
 				className={`${styles.profile_input_div} ${styles.fullname_input_div}`}
 			>
 				<span className={styles.input_info}>Full name</span>
-				<input className={styles.profile_input} />
+				<input className={styles.profile_input} data-qa="input-fullname" />
 			</div>
 			<div className={styles.comment2input_div} />
 			<div
@@ -38,6 +38,7 @@ export default function EditProfile(props) {
 					className={styles.profile_input}
 					pattern="^[a-z][a-z0-9-_\.]{4,32}$"
 					onInvalid={handleInvalid}
+					data-qa="input-username"
 				/>
 			</div>
 			<div className={styles.comment2input_div}>
@@ -49,7 +50,7 @@ export default function EditProfile(props) {
 				className={`${styles.profile_input_div} ${styles.biodetails_input_div}`}
 			>
 				<span className={styles.input_info}>Bio</span>
-				<textarea className={styles.profile_input} />
+				<textarea className={styles.profile_input} data-qa="input-bio" />
 			</div>
 			<div className={styles.comment2input_div}>
 				<span className={styles.comment2input}>Any details about you</span>
