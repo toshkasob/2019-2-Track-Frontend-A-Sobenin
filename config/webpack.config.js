@@ -9,6 +9,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
 const InlineChunkHtmlPlugin = require('react-dev-utils/InlineChunkHtmlPlugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const CSSSpritePlugin = require('css-sprite-loader').Plugin;
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const safePostCssParser = require('postcss-safe-parser');
@@ -105,6 +106,9 @@ module.exports = function(webpackEnv) {
 					],
 					sourceMap: isEnvProduction && shouldUseSourceMap,
 				},
+			},
+			{
+				loader: 'css-sprite-loader',
 			},
 		].filter(Boolean);
 		if (preProcessor) {
@@ -506,6 +510,9 @@ module.exports = function(webpackEnv) {
 			],
 		},
 		plugins: [
+			// Webpack loader for creating PNG sprites.
+			// Generate sprite of Emojies
+			new CSSSpritePlugin(),
 			// Generates an `index.html` file with the <script> injected.
 			new HtmlWebpackPlugin(
 				Object.assign(
