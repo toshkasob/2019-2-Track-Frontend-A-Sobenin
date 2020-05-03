@@ -7,10 +7,10 @@ import './styles/globalStyles.css';
 import * as serviceWorker from './utils/serviceWorker';
 
 // render(
-// 	<Provider store={store}>
-// 		<Routes />
-// 	</Provider>,
-// 	document.getElementById('root'),
+// <Provider store={store}>
+// <Routes />
+// </Provider>,
+// document.getElementById('root'),
 // );
 render(<AppContainer />, document.getElementById('root'));
 // If you want your app to work offline and load faster, you can change

@@ -2,6 +2,8 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../styles/messageUnitStyles.module.scss';
+import stylesEmojies from '../styles/emojiStyles.module.css';
+import emojiNames from '../assets/arrayEmojies.js';
 
 function MessageContent(props) {
 	const curProps = props;
@@ -10,25 +12,57 @@ function MessageContent(props) {
 	if (curProps.contentType === 'text') {
 		const re = /(https:\/\/\S+[^\s.,> )\];'"!?])/;
 		const parts = curProps.messageContent.split(re);
+		// захват потенциального емоджи
+		const reEmoji = /:(.*?):/;
+		// const someEmojies = curProps.messageContent.split(reEmoji);
 
-		for (let i = 1; i < parts.length; i += 2) {
-			parts[i] = (
-				<a
-					className={styles.link}
-					key={`link${i}`}
-					target="_blank"
-					rel="noopener noreferrer"
-					href={parts[i]}
-				>
-					{parts[i]}
-				</a>
-			);
+		const outputMessage = [];
+		for (let i = 0; i < parts.length; i += 1) {
+			// eslint-disable-next-line yoda
+			if (1 == i % 2) {
+				parts[i] = (
+					<a
+						className={styles.link}
+						key={`link${i}`}
+						target="_blank"
+						rel="noopener noreferrer"
+						href={parts[i]}
+					>
+						{parts[i]}
+					</a>
+				);
+				outputMessage.push(parts[i]);
+			} else {
+				const testEmojies = parts[i].split(reEmoji);
+				for (let iemo = 0; iemo < testEmojies.length; iemo += 1) {
+					// eslint-disable-next-line yoda
+					if (1 == iemo % 2) {
+						if (emojiNames.includes(testEmojies[iemo])) {
+							const nameEmo = testEmojies[iemo];
+							testEmojies[iemo] = (
+								<div
+									className={`${stylesEmojies.emoji} ${stylesEmojies[nameEmo]}`}
+								/>
+							);
+						} else {
+							testEmojies[iemo] = `:${testEmojies[iemo]}:`;
+							testEmojies[iemo] = <p>{testEmojies[iemo]}</p>;
+						}
+						outputMessage.push(testEmojies[iemo]);
+					} else {
+						testEmojies[iemo] = <p>{testEmojies[iemo]}</p>;
+						outputMessage.push(testEmojies[iemo]);
+					}
+				}
+				// parts[i] = {testEmojies};
+			}
 		}
 
 		content = (
 			<div data-qa="message-text" className={styles.message_text}>
-				{parts}
+				{outputMessage}
 			</div>
+			// </div>
 		);
 	} else if (curProps.contentType === 'image') {
 		content = (
