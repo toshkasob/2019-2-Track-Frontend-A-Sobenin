@@ -38,4 +38,5 @@ const emojiNames = [
 	'woman-zombie',
 	'zany-face',
 ];
+
 export default emojiNames;
