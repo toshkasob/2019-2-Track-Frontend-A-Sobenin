@@ -19,7 +19,7 @@ function MessageContent(props) {
 		const outputMessage = [];
 		for (let i = 0; i < parts.length; i += 1) {
 			// eslint-disable-next-line yoda
-			if (1 == i % 2) {
+			if (1 === i % 2) {
 				parts[i] = (
 					<a
 						className={styles.link}
@@ -36,7 +36,7 @@ function MessageContent(props) {
 				const testEmojies = parts[i].split(reEmoji);
 				for (let iemo = 0; iemo < testEmojies.length; iemo += 1) {
 					// eslint-disable-next-line yoda
-					if (1 == iemo % 2) {
+					if (1 === iemo % 2) {
 						if (emojiNames.includes(testEmojies[iemo])) {
 							const nameEmo = testEmojies[iemo];
 							testEmojies[iemo] = (

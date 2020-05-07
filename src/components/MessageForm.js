@@ -37,6 +37,7 @@ export default function MessageForm(props) {
 
 	function handleAttachGeo() {
 		if (!navigator.geolocation) {
+			// eslint-disable-next-line no-alert
 			alert('Geolocation is not supported by your browser =(');
 		} else {
 			const geoSuccess = (position) => {
@@ -48,8 +49,9 @@ export default function MessageForm(props) {
 			};
 
 			const geoError = (error) => {
+				// eslint-disable-next-line no-alert
 				alert('Unable to retrieve your location... Try again =)');
-				console.log(error.message);
+				// console.log(error.message);
 			};
 
 			const geoOptions = {
@@ -86,6 +88,7 @@ export default function MessageForm(props) {
 				body: data,
 			});
 		} else {
+			// eslint-disable-next-line no-alert
 			alert('Sorry. Try another IMAGE with size (0, 5000000] bytes');
 		}
 	}
@@ -168,7 +171,7 @@ export default function MessageForm(props) {
 				stream = await navigator.mediaDevices.getUserMedia(constraints);
 				recordAudio(stream);
 			} catch (error) {
-				console.log(error.message);
+				// console.log(error.message);
 			}
 		}
 
