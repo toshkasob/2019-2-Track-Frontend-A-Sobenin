@@ -1,0 +1,330 @@
+/* prettier-ignore */
+.emojiesKeyboard {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  width: 50vw;
+  height: 50vh;
+  max-width: 320px;
+  min-width: 160px;
+  max-height: 320px;
+  min-height: 160px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+  position: absolute;
+  bottom: 6vh;
+  right: 6vw;
+  overflow-y: auto;
+  background: rgba(224, 255, 255, 0.5);
+}
+
+/* prettier-ignore */
+.emoji {
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+}
+
+/* prettier-ignore */
+.angry-face-with-horns {
+  background:
+    url('../images/emojies/angry-face-with-horns.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.baby-angel {
+  background:
+    url('../images/emojies/baby-angel.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.cat-face-with-tears-of-joy {
+  background:
+    url('../images/emojies/cat-face-with-tears-of-joy.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.cat-face-with-wry-smile {
+  background:
+    url('../images/emojies/cat-face-with-wry-smile.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.crying-cat-face {
+  background:
+    url('../images/emojies/crying-cat-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.flexed-biceps {
+  background:
+    url('../images/emojies/flexed-biceps.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.grinning-cat-face {
+  background:
+    url('../images/emojies/grinning-cat-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.grinning-cat-face-with-smiling-eyes {
+  background:
+    url('../images/emojies/grinning-cat-face-with-smiling-eyes.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.handshake {
+  background:
+    url('../images/emojies/handshake.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.kissing-cat-face {
+  background:
+    url('../images/emojies/kissing-cat-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.loudly-crying-face {
+  background:
+    url('../images/emojies/loudly-crying-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.man-genie {
+  background:
+    url('../images/emojies/man-genie.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.man-zombie {
+  background:
+    url('../images/emojies/man-zombie.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.middle-finger {
+  background:
+    url('../images/emojies/middle-finger.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.money-mouth-face {
+  background:
+    url('../images/emojies/money-mouth-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.nauseated-face {
+  background:
+    url('../images/emojies/nauseated-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.ok-hand {
+  background:
+    url('../images/emojies/ok-hand.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.oncoming-fist {
+  background:
+    url('../images/emojies/oncoming-fist.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.pouting-cat-face {
+  background:
+    url('../images/emojies/pouting-cat-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.raised-back-of-hand {
+  background:
+    url('../images/emojies/raised-back-of-hand.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.raised-fist {
+  background:
+    url('../images/emojies/raised-fist.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.raised-hand {
+  background:
+    url('../images/emojies/raised-hand.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.right-facing-fist {
+  background:
+    url('../images/emojies/right-facing-fist.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.sign-of-the-horns {
+  background:
+    url('../images/emojies/sign-of-the-horns.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.sleeping-face {
+  background:
+    url('../images/emojies/sleeping-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.smiling-cat-face-with-heart-eyes {
+  background:
+    url('../images/emojies/smiling-cat-face-with-heart-eyes.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.smiling-face-with-halo {
+  background:
+    url('../images/emojies/smiling-face-with-halo.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.smiling-face-with-horns {
+  background:
+    url('../images/emojies/smiling-face-with-horns.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.smiling-face-with-sunglasses {
+  background:
+    url('../images/emojies/smiling-face-with-sunglasses.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.thinking-face {
+  background:
+    url('../images/emojies/thinking-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.thumbs-down {
+  background:
+    url('../images/emojies/thumbs-down.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.thumbs-up {
+  background:
+    url('../images/emojies/thumbs-up.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.upside-down-face {
+  background:
+    url('../images/emojies/upside-down-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.victory-hand {
+  background:
+    url('../images/emojies/victory-hand.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.weary-cat-face {
+  background:
+    url('../images/emojies/weary-cat-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.winking-face {
+  background:
+    url('../images/emojies/winking-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.woman-zombie {
+  background:
+    url('../images/emojies/woman-zombie.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}
+
+/* prettier-ignore */
+.zany-face {
+  background:
+    url('../images/emojies/zany-face.png?sprite')
+    no-repeat;
+  background-size: 32px;
+}

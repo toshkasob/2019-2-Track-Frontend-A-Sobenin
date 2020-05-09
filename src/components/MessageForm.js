@@ -15,6 +15,7 @@ export default function MessageForm(props) {
 	const [inputValue, setInputValue] = useState('');
 	const [flagRec, setFlagRec] = useState(recordInit);
 	const [messages, setMessages] = useState(messagesInit);
+	const [showEmojies, setShowEmojies] = useState(false);
 
 	function handleChange(event) {
 		const { value } = event.target;
@@ -26,8 +27,17 @@ export default function MessageForm(props) {
 		}
 	}
 
+	function handleShowEmojies() {
+		if (showEmojies) {
+			setShowEmojies(false);
+		} else {
+			setShowEmojies(true);
+		}
+	}
+
 	function handleAttachGeo() {
 		if (!navigator.geolocation) {
+			// eslint-disable-next-line no-alert
 			alert('Geolocation is not supported by your browser =(');
 		} else {
 			const geoSuccess = (position) => {
@@ -39,8 +49,9 @@ export default function MessageForm(props) {
 			};
 
 			const geoError = (error) => {
+				// eslint-disable-next-line no-alert
 				alert('Unable to retrieve your location... Try again =)');
-				console.log(error.message);
+				// console.log(error.message);
 			};
 
 			const geoOptions = {
@@ -57,6 +68,13 @@ export default function MessageForm(props) {
 		}
 	}
 
+	function handleEmojiChosen(name) {
+		// eslint-disable-next-line no-console
+		console.log('name is ', name, 'in handleEmojiChosen');
+		const inpVal = `${inputValue}:${name}:`;
+		setInputValue(inpVal);
+		letSubmitButtonShow('inline-block');
+	}
 	function handleImage(event, files = event.target.files) {
 		if (files.length && files[0].size <= 5000000) {
 			// alert(files[0].type);
@@ -70,6 +88,7 @@ export default function MessageForm(props) {
 				body: data,
 			});
 		} else {
+			// eslint-disable-next-line no-alert
 			alert('Sorry. Try another IMAGE with size (0, 5000000] bytes');
 		}
 	}
@@ -152,7 +171,7 @@ export default function MessageForm(props) {
 				stream = await navigator.mediaDevices.getUserMedia(constraints);
 				recordAudio(stream);
 			} catch (error) {
-				console.log(error.message);
+				// console.log(error.message);
 			}
 		}
 
@@ -260,11 +279,14 @@ export default function MessageForm(props) {
 					placeholder="Сообщение"
 					value={inputValue}
 					onChange={handleChange}
+					attachEmoji={handleShowEmojies}
 					attachGeo={handleAttachGeo}
+					handleEmojiChosen={handleEmojiChosen}
 					handleImage={handleImage}
 					handleRecordAudio={handleRecordAudio}
 					handleStopRecord={handleStopRecord}
 					flagRec={flagRec}
+					showEmojies={showEmojies}
 					submitButtonDisplayStyle={submitButtonDisplayStyle}
 				/>
 			</form>

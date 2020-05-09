@@ -8,11 +8,17 @@ import { ReactComponent as GeoSvg } from '../images/button_geo.svg';
 import { ReactComponent as StartRecSvg } from '../images/button_rec_audio.svg';
 import { ReactComponent as FinishRecSvg } from '../images/button_stop_audio.svg';
 import { ReactComponent as ImgSvg } from '../images/button_attach_image.svg';
+import { ReactComponent as EmojiesSvg } from '../images/emojies.svg';
+import EmojiesKeyboard from './EmojiesKeyboard';
 
 export default function FormInput(props) {
 	const imgInput = React.createRef();
 	const curProps = props;
 
+	// // eslint-disable-next-line no-debugger
+	// debugger;
+	// // eslint-disable-next-line no-console
+	// console.log(curProps.showEmojies);
 	return (
 		<div className={styles.form_input}>
 			<input
@@ -24,6 +30,19 @@ export default function FormInput(props) {
 				onChange={curProps.onChange}
 				disabled={curProps.flagRec.isBlocked}
 			/>
+			<EmojiesKeyboard
+				showEmojiesKeyboard={curProps.showEmojies}
+				handleEmojiChosen={curProps.handleEmojiChosen}
+			/>
+			<button
+				type="button"
+				id="get-emojies"
+				className={styles.button_attach}
+				onClick={curProps.attachEmoji}
+				disabled={curProps.flagRec.isBlocked}
+			>
+				<EmojiesSvg className={styles.button_attach_img} />
+			</button>
 			<button
 				type="button"
 				id="get-geo"
@@ -86,12 +105,15 @@ export default function FormInput(props) {
 
 FormInput.propTypes = {
 	submitButtonDisplayStyle: PropTypes.string.isRequired,
+	attachEmoji: PropTypes.func.isRequired,
 	attachGeo: PropTypes.func.isRequired,
+	handleEmojiChosen: PropTypes.func.isRequired,
 	handleImage: PropTypes.func.isRequired,
 	handleRecordAudio: PropTypes.func.isRequired,
 	handleStopRecord: PropTypes.func.isRequired,
 	flagRec: PropTypes.any.isRequired,
 	onChange: PropTypes.func.isRequired,
 	placeholder: PropTypes.string.isRequired,
+	showEmojies: PropTypes.bool.isRequired,
 	value: PropTypes.string.isRequired,
 };
