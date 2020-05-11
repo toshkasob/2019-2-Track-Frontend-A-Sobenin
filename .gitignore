@@ -152,3 +152,6 @@ jest_*/
 #### template message of HomeWork ####
 *.bckp.*
 false/
+
+#### TypeScript ####
+/ts/utils/*.js
