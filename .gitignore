@@ -154,4 +154,4 @@ jest_*/
 false/
 
 #### TypeScript ####
-/ts/utils/*.js
+/ts/utils/*/*.js
