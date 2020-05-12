@@ -2,6 +2,8 @@ import { API, API_KEY } from './constants';
 import * as T from './types';
 import * as MEM from './memoization';
 
+const fetch = require('node-fetch');
+
 export async function translate(
 	qParams: T.ITranslateQParams,
 ): Promise<T.TTranslateResponse> {
