@@ -17,6 +17,7 @@ export async function translate(
 	}
 
 	const cacheResponse: T.TTranslateResponse = await MEM.checkCache(qParams);
+	// console.log('cache:',cacheResponse)
 	if (200 === cacheResponse.code || 501 === cacheResponse.code) {
 		return cacheResponse;
 	}
@@ -34,21 +35,25 @@ export async function translate(
 	}
 
 	apiURL = encodeURI(apiURL);
+	// console.log(apiURL)
 
-	fetch(apiURL, { method: 'POST' })
+	const resultF = await fetch(apiURL, { method: 'POST' })
 		.then((response: any) => response.json())
 		.then((data: T.ITranlateResponse) => {
 			result = data;
-			MEM.saveCache(qParams, result);
-			return result;
+			MEM.saveCache(qParams, data);
+			return data;
 		})
 		.catch((err: T.IErrorResponse) => {
 			error = err;
 			if (501 === error.code) {
-				MEM.saveCache(qParams, error);
+				MEM.saveCache(qParams, err);
 			}
 			return error;
 		});
 
-	return 200 === result.code ? result : error;
+	// if (200 === resultF.code || 501 === resultF.code) {
+	// 	await MEM.saveCache(qParams, resultF);
+	// }
+	return 200 === resultF.code ? resultF : error;
 }

@@ -2,15 +2,17 @@ import * as T from './types';
 
 let translatedCache: T.ICacheResponse = {};
 
-export function saveCache(
+export async function saveCache(
 	qParams: T.ITranslateQParams,
 	response: T.TTranslateResponse,
-): void {
+): Promise<void> {
 	const index = `lang: ${qParams.lang}, text: ${qParams.text}`;
 	translatedCache[index] = response;
 }
 
-export function checkCache(qParams: T.ITranslateQParams): T.TTranslateResponse {
+export async function checkCache(
+	qParams: T.ITranslateQParams,
+): Promise<T.TTranslateResponse> {
 	const index = `lang: ${qParams.lang}, text: ${qParams.text}`;
 	const response: T.TTranslateResponse = translatedCache[index];
 
