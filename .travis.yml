@@ -17,4 +17,4 @@ deploy:
     branch:
       - master
       - devel
-      - 2nd_HW3
+      - 2nd_HW6
