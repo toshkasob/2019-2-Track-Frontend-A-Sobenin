@@ -18,6 +18,8 @@
 .options_bar {
 	display: flex;
 	flex-direction: row;
+	justify-content: space-between;
+	align-content: baseline;
 	border: 1px solid lightgray;
 	width: calc(2 * var(--width-area));
 	height: 5vh;
@@ -59,4 +61,11 @@
 	overflow: auto;
 	height: min-content;
 	min-height: 10px;
+}
+
+.buttonTranslate {
+	border: none;
+	background: tan;
+	margin: 0 1vw 0 1vw;
+	height: 5vh;
 }

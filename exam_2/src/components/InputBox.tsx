@@ -13,6 +13,7 @@ function InputBox(props: T.InputBoxProps) {
 				onChange={props.handleChange}
 				onSubmit={props.handleSubmit}
 				// onKeyUp={resizeBox(this)}
+				onFocus={props.handleSubmit}
 			/>
 		</div>
 	);

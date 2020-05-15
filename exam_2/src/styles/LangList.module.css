@@ -6,8 +6,16 @@
 }
 
 .input {
-	margin-left: 25vw;
+	margin-left: 0vw;
 }
 .output {
-	margin-right: 25vw;
+	margin-right: 0vw;
+}
+
+.oneLang {
+	border: none;
+	border-top: solid 2px rgba(255, 182, 193, 0.4);
+	border-radius: 5px;
+	background: rgba(176, 224, 230, 0.4);
+	width: 60%;
 }

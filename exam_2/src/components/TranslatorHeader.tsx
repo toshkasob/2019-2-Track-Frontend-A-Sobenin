@@ -3,7 +3,7 @@ import styles from '../styles/TranslatorHeader.module.css';
 
 function TranslatorHeader() {
 	return (
-		<div>
+		<div className={styles.header}>
 			<span>TechnoTrack Translate</span>
 		</div>
 	);

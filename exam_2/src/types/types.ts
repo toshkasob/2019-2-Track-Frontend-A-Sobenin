@@ -7,6 +7,7 @@ export interface InputBoxProps {
 export interface ILanguageProps {
 	isInputLang: boolean;
 	lang: string;
+	handleLetLang(letLang: string): void;
 }
 export interface OutputBoxProps {
 	value: string;
@@ -17,4 +18,5 @@ export interface ILangProps {
 	langFull: string;
 	showLangs: boolean;
 	isInputLang: boolean;
+	handleChoseLang(event: any): void;
 }

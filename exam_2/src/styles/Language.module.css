@@ -1,0 +1,23 @@
+.language {
+	display: block;
+	overflow: hidden;
+	height: 50vh;
+	padding: 1vmin;
+}
+
+.input {
+	margin-left: 0vw;
+	background: none;
+	border: none;
+}
+.output {
+	margin-right: 0vw;
+	background: none;
+	border: none;
+	margin-right: 10vw;
+}
+.buttonLang {
+	border: none;
+	background: none;
+	margin: 0 1vw 0 1vw;
+}

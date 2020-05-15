@@ -1,114 +1,107 @@
 import React, { useState, useEffect } from 'react';
 import * as T from '../types/types';
-import styles from '../styles/InputBox.module.css';
+import styles from '../styles/Language.module.css';
 import LangaugeList from './LanguagesList';
+import { langsCode } from '../constants/AllLangs';
 
 function Langauge(props: T.ILanguageProps) {
-	const [showLangs, setShowLangs] = useState(true);
+	const [showLangs, setShowLangs] = useState(false);
+	const [chosenLang, setChosenLang] = useState('en');
+	const [chosenLangFull, setChosenLangFull] = useState('English');
+	const [autoDetect, setAutoDetect] = useState('none');
 
-	const langsCode: Map<string, string> = new Map([
-		['Afrikaans', 'af'],
-		['Albanian', 'sq'],
-		['Amharic', 'am'],
-		['Arabic', 'ar'],
-		['Armenian', 'hy'],
-		['Azerbaijan', 'az'],
-		['Bashkir', 'ba'],
-		['Basque', 'eu'],
-		['Belarusian', 'be'],
-		['Bengali', 'bn'],
-		['Bosnian', 'bs'],
-		['Burmese', 'my'],
-		['Bulgarian', 'bg'],
-		['Cebuano', 'ceb'],
-		['Chinese', 'zh'],
-		['Croatian', 'hr'],
-		['Czech', 'cs'],
-		['Danish', 'da'],
-		['Dutch', 'nl'],
-		['English', 'en'],
-		['Esperanto', 'eo'],
-		['Estonian', 'et'],
-		['Finnish', 'fi'],
-		['French', 'fr'],
-		['Galician', 'gl'],
-		['German', 'de'],
-		['Georgian', 'ka'],
-		['Greek', 'el'],
-		['Gujarati', 'gu'],
-		['Haitian (Creole)', 'ht'],
-		['Hebrew', 'he'],
-		['Hill Mari', 'mrj'],
-		['Hindi', 'hi'],
-		['Hungarian', 'hu'],
-		['Indonesian', 'id'],
-		['Irish', 'ga'],
-		['Italian', 'it'],
-		['Icelandic', 'is'],
-		['Japanese', 'ja'],
-		['Javanese', 'jv'],
-		['Kazakh', 'kk'],
-		['Kannada', 'kn'],
-		['Catalan', 'ca'],
-		['Kyrgyz', 'ky'],
-		['Korean', 'ko'],
-		['Khmer', 'km'],
-		['Laotian', 'lo'],
-		['Latin', 'la'],
-		['Latvian', 'lv'],
-		['Lithuanian', 'lt'],
-		['Luxembourgish', 'lb'],
-		['Malagasy', 'mg'],
-		['Malay', 'ms'],
-		['Malayalam', 'ml'],
-		['Maltese', 'mt'],
-		['Macedonian', 'mk'],
-		['Maori', 'mi'],
-		['Marathi', 'mr'],
-		['Mari', 'mhr'],
-		['Mongolian', 'mn'],
-		['Nepali', 'ne'],
-		['Norwegian', 'no'],
-		['Punjabi', 'pa'],
-		['Papiamento', 'pap'],
-		['Persian', 'fa'],
-		['Polish', 'pl'],
-		['Portuguese', 'pt'],
-		['Romanian', 'ro'],
-		['Russian', 'ru'],
-		['Scottish', 'gd'],
-		['Serbian', 'sr'],
-		['Sinhala', 'si'],
-		['Slovakian', 'sk'],
-		['Slovenian', 'sl'],
-		['Spanish', 'es'],
-		['Swahili', 'sw'],
-		['Swedish', 'sv'],
-		['Sundanese', 'su'],
-		['Tajik', 'tg'],
-		['Thai', 'th'],
-		['Tagalog', 'tl'],
-		['Tamil', 'ta'],
-		['Tatar', 'tt'],
-		['Telugu', 'te'],
-		['Turkish', 'tr'],
-		['Udmurt', 'udm'],
-		['Uzbek', 'uz'],
-		['Ukrainian', 'uk'],
-		['Urdu', 'ur'],
-		['Vietnamese', 'vi'],
-		['Welsh', 'cy'],
-		['Xhosa', 'xh'],
-		['Yiddish', 'yi'],
-	]);
+	let langFromList = 'en';
+	let langFromListFull = 'English';
+	function handleShowLangs() {
+		if (showLangs) {
+			setShowLangs(false);
+		} else {
+			setShowLangs(true);
+		}
+	}
+
+	function handleChooseLang(chosenLangauge: string) {
+		setChosenLangFull(chosenLangauge);
+		console.log(chosenLangauge); // ToDo comment it
+		if (langsCode.has(chosenLangauge)) {
+			console.log(chosenLangauge); // ToDo comment it
+			langFromList = langsCode.get(chosenLangauge) as string;
+			langFromListFull = chosenLangauge;
+			setChosenLang(langFromList);
+		} else {
+			setChosenLang('AD');
+			langFromList = 'AD';
+			langFromListFull = 'AutoDetect';
+		}
+		setShowLangs(false);
+		props.handleLetLang(langFromList);
+	}
+
+	function hideAutoDetect() {
+		if (props.isInputLang) {
+			setAutoDetect('inline');
+		} else {
+			setAutoDetect('none');
+		}
+	}
+
+	let typeOfLangBox: string;
+	let langBoxStyle: any;
+	let buttonOpenLangs: any = <button></button>;
+	if (props.isInputLang) {
+		typeOfLangBox = "This's INPUT language";
+		langBoxStyle = `${styles.language}`;
+		buttonOpenLangs = (
+			<button
+				type="button"
+				className={`${styles.langauge} ${styles.input}`}
+				onClick={handleShowLangs}
+			>
+				v
+			</button>
+		);
+	} else {
+		typeOfLangBox = "This's OUTPUT language";
+		langBoxStyle = `${styles.language}`;
+		buttonOpenLangs = (
+			<button
+				type="button"
+				className={`${styles.langauge} ${styles.output}`}
+				onClick={handleShowLangs}
+			>
+				v
+			</button>
+		);
+	}
+
+	useEffect(() => {
+		hideAutoDetect();
+	});
 
 	return (
-		<div className={styles.editor}>
+		<div className={langBoxStyle} id={typeOfLangBox}>
+			<button
+				className={styles.buttonLang}
+				style={{ display: autoDetect }}
+				onClick={() => {
+					handleChooseLang('AutoDetect');
+				}}
+			>
+				{'AutoDetect'}
+			</button>
+			<button
+				className={styles.buttonLang}
+				// style={{background: '#add8e6'}}
+			>
+				{chosenLangFull}
+			</button>
+			{buttonOpenLangs}
 			<LangaugeList
-				lang={props.lang}
-				langFull={''}
+				lang={langFromList}
+				langFull={langFromListFull}
 				showLangs={showLangs}
 				isInputLang={props.isInputLang}
+				handleChoseLang={handleChooseLang}
 			/>
 		</div>
 	);
