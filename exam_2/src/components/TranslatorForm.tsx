@@ -26,23 +26,25 @@ function TranslatorForm() {
 	}
 	async function handleSubmit(event: any) {
 		event.preventDefault();
-		setInputBoxValue(inputLang); // ToDo comment it
-		setOutputBoxValue(outputLang); // ToDo comment it
+		// setInputBoxValue(inputLang); // ToDo comment it
+		// setOutputBoxValue(outputLang); // ToDo comment it
 		let fromto: string = `${inputLang}-${outputLang}`;
 		if ('AD' === inputLang || '' === inputLang) {
 			fromto = `${outputLang}`;
 		}
 		console.log('lang: ', fromto); // ToDo comment it
-		// const inp2out: TyaT.ITranslateQParams = {
-		// 	lang: `${fromto}`,
-		// 	text: inputBoxValue,
-		// }
-		// const result: TyaT.TTranslateResponse = await TranslateUtils.default.translate(inp2out);
-		// if (200 == result.code) {
-		// 	setOutputBoxValue((result as TyaT.ITranlateResponse).text);
-		// } else {
-		// 	setOutputBoxValue((result as TyaT.IErrorResponse).message);
-		// }
+		const inp2out: TyaT.ITranslateQParams = {
+			lang: `${fromto}`,
+			text: inputBoxValue,
+		};
+		const result: TyaT.TTranslateResponse = await TranslateUtils.default.translate(
+			inp2out,
+		);
+		if (200 == result.code) {
+			setOutputBoxValue((result as TyaT.ITranlateResponse).text);
+		} else {
+			setOutputBoxValue((result as TyaT.IErrorResponse).message);
+		}
 	}
 
 	return (
