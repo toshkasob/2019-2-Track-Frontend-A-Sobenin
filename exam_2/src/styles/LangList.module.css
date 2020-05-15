@@ -1,0 +1,13 @@
+.langList {
+	display: flex;
+	flex-direction: column;
+	overflow: auto;
+	height: 50vh;
+}
+
+.input {
+	margin-left: 25vw;
+}
+.output {
+	margin-right: 25vw;
+}
