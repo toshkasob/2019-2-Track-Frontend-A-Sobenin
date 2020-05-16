@@ -22,9 +22,9 @@ function Langauge(props: T.ILanguageProps) {
 
 	function handleChooseLang(chosenLangauge: string) {
 		setChosenLangFull(chosenLangauge);
-		console.log(chosenLangauge); // ToDo comment it
+		// console.log(chosenLangauge); // ToDo comment it
 		if (langsCode.has(chosenLangauge)) {
-			console.log(chosenLangauge); // ToDo comment it
+			// console.log(chosenLangauge); // ToDo comment it
 			langFromList = langsCode.get(chosenLangauge) as string;
 			langFromListFull = chosenLangauge;
 			setChosenLang(langFromList);
@@ -42,6 +42,23 @@ function Langauge(props: T.ILanguageProps) {
 			setAutoDetect('inline');
 		} else {
 			setAutoDetect('none');
+		}
+		let flagChangeLang: boolean = false;
+		langsCode.forEach((value: string, key: string) => {
+			if (value === props.lang) {
+				setChosenLangFull(key);
+				setChosenLang(value);
+				flagChangeLang = true;
+			}
+		});
+		if (!flagChangeLang) {
+			if (props.isInputLang) {
+				setChosenLangFull('AutoDetect');
+				setChosenLang('AD');
+			} else {
+				setChosenLangFull('Unknown');
+				setChosenLang('un');
+			}
 		}
 	}
 

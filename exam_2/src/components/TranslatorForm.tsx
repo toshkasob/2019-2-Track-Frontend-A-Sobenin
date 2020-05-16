@@ -18,11 +18,11 @@ function TranslatorForm() {
 	}
 	function handleInputLang(inpLang: string) {
 		setInputLang(inpLang);
-		console.log('inpLang :', inpLang, 'setInputLang(', inputLang, ')'); // ToDo comment it
+		// console.log('inpLang :', inpLang, 'setInputLang(', inputLang, ')'); // ToDo comment it
 	}
 	function handleOutputLang(outLang: string) {
 		setOutputLang(outLang);
-		console.log('outLang :', outLang, 'setOutputLang(', outputLang, ')'); // ToDo comment it
+		// console.log('outLang :', outLang, 'setOutputLang(', outputLang, ')'); // ToDo comment it
 	}
 	async function handleSubmit(event: any) {
 		event.preventDefault();
