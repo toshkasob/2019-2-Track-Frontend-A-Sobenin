@@ -62,7 +62,7 @@ function Langauge(props: T.ILanguageProps) {
 
 	let typeOfLangBox: string;
 	let langBoxStyle: string;
-	let buttonOpenLangs: object = <button></button>;
+	let buttonOpenLangs: JSX.Element;
 	if (props.isInputLang) {
 		typeOfLangBox = "This's INPUT language";
 		langBoxStyle = `${styles.language}`;
