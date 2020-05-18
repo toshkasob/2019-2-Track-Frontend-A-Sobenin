@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import * as T from '../types/types';
 import styles from '../styles/Language.module.css';
 import LangaugeList from './LanguagesList';
@@ -75,10 +75,6 @@ function Langauge(props: T.ILanguageProps) {
 			</button>
 		);
 	}
-
-	// useEffect(() => {
-	// 	initLanguages();
-	// });
 
 	return (
 		<div className={langBoxStyle} id={typeOfLangBox}>
