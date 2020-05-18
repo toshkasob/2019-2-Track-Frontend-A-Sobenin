@@ -2,16 +2,18 @@ import React, { useState, useEffect } from 'react';
 import * as T from '../types/types';
 import styles from '../styles/Language.module.css';
 import LangaugeList from './LanguagesList';
-import { langsCode } from '../constants/AllLangs';
+import { fullLangs } from '../constants/fullLangs';
 
 function Langauge(props: T.ILanguageProps) {
+	let { handleLetLang, isInputLang, lang } = props;
+	lang = fullLangs.has(lang) ? lang : 'UN';
 	const [showLangs, setShowLangs] = useState(false);
-	const [chosenLang, setChosenLang] = useState('en');
-	const [chosenLangFull, setChosenLangFull] = useState('English');
+	const [chosenLang, setChosenLang] = useState(lang);
+	const [chosenLangFull, setChosenLangFull] = useState(
+		fullLangs.get(lang) as string,
+	);
 	const [autoDetect, setAutoDetect] = useState('none');
 
-	let langFromList = 'en';
-	let langFromListFull = 'English';
 	function handleShowLangs() {
 		if (showLangs) {
 			setShowLangs(false);
@@ -21,49 +23,34 @@ function Langauge(props: T.ILanguageProps) {
 	}
 
 	function handleChooseLang(chosenLangauge: string) {
-		setChosenLangFull(chosenLangauge);
-		if (langsCode.has(chosenLangauge)) {
-			langFromList = langsCode.get(chosenLangauge) as string;
-			langFromListFull = chosenLangauge;
-			setChosenLang(langFromList);
+		setChosenLang(chosenLangauge);
+		if (fullLangs.has(chosenLangauge)) {
+			lang = chosenLangauge;
+			setChosenLangFull(fullLangs.get(chosenLangauge) as string);
+			isInputLang && chosenLangauge !== 'AD'
+				? setAutoDetect('inline')
+				: setAutoDetect('none');
 		} else {
-			setChosenLang('AD');
-			langFromList = 'AD';
-			langFromListFull = 'AutoDetect';
-		}
-		setShowLangs(false);
-		props.handleLetLang(langFromList);
-	}
-
-	function hideAutoDetect() {
-		if (props.isInputLang) {
-			setAutoDetect('inline');
-		} else {
-			setAutoDetect('none');
-		}
-		let flagChangeLang: boolean = false;
-		langsCode.forEach((value: string, key: string) => {
-			if (value === props.lang) {
-				setChosenLangFull(key);
-				setChosenLang(value);
-				flagChangeLang = true;
-			}
-		});
-		if (!flagChangeLang) {
-			if (props.isInputLang) {
+			if (isInputLang) {
+				lang = 'AD';
 				setChosenLangFull('AutoDetect');
 				setChosenLang('AD');
+				setAutoDetect('none');
 			} else {
+				lang = 'ru';
 				setChosenLangFull('Unknown');
 				setChosenLang('un');
+				setAutoDetect('none');
 			}
 		}
+		setShowLangs(false);
+		handleLetLang(lang);
 	}
 
 	let typeOfLangBox: string;
 	let langBoxStyle: string;
 	let buttonOpenLangs: JSX.Element;
-	if (props.isInputLang) {
+	if (isInputLang) {
 		typeOfLangBox = "This's INPUT language";
 		langBoxStyle = `${styles.language}`;
 		buttonOpenLangs = (
@@ -89,28 +76,49 @@ function Langauge(props: T.ILanguageProps) {
 		);
 	}
 
-	useEffect(() => {
-		hideAutoDetect();
-	});
+	// useEffect(() => {
+	// 	initLanguages();
+	// });
 
 	return (
 		<div className={langBoxStyle} id={typeOfLangBox}>
+			<button className={styles.buttonLang}>{chosenLangFull}</button>
+			{buttonOpenLangs}
 			<button
+				id="AutoDetect button"
 				className={styles.buttonLang}
 				style={{ display: autoDetect }}
 				onClick={() => {
-					handleChooseLang('AutoDetect');
+					handleChooseLang('AD');
 				}}
 			>
 				{'AutoDetect'}
 			</button>
-			<button className={styles.buttonLang}>{chosenLangFull}</button>
-			{buttonOpenLangs}
+			<button
+				id="English button"
+				className={styles.buttonLang}
+				style={{ display: autoDetect }}
+				onClick={() => {
+					handleChooseLang('en');
+				}}
+			>
+				{'English'}
+			</button>
+			<button
+				id="Russian button"
+				className={styles.buttonLang}
+				style={{ display: autoDetect }}
+				onClick={() => {
+					handleChooseLang('ru');
+				}}
+			>
+				{'Russian'}
+			</button>
 			<LangaugeList
-				lang={langFromList}
-				langFull={langFromListFull}
+				lang={chosenLang}
+				langFull={chosenLangFull}
 				showLangs={showLangs}
-				isInputLang={props.isInputLang}
+				isInputLang={isInputLang}
 				handleChoseLang={handleChooseLang}
 			/>
 		</div>

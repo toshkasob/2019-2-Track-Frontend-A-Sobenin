@@ -10,7 +10,7 @@ import Language from './Language';
 function TranslatorForm() {
 	const [inputBoxValue, setInputBoxValue] = useState('');
 	const [outputBoxValue, setOutputBoxValue] = useState('');
-	const [inputLang, setInputLang] = useState('');
+	const [inputLang, setInputLang] = useState('AD');
 	const [outputLang, setOutputLang] = useState('ru');
 
 	function handleChange(event: any) {
