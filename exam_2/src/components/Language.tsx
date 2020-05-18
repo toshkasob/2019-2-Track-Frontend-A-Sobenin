@@ -61,8 +61,8 @@ function Langauge(props: T.ILanguageProps) {
 	}
 
 	let typeOfLangBox: string;
-	let langBoxStyle: any;
-	let buttonOpenLangs: any = <button></button>;
+	let langBoxStyle: string;
+	let buttonOpenLangs: object = <button></button>;
 	if (props.isInputLang) {
 		typeOfLangBox = "This's INPUT language";
 		langBoxStyle = `${styles.language}`;

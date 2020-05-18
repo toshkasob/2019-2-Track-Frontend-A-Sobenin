@@ -7,7 +7,7 @@ function LangaugeList(props: T.ILangProps) {
 	if (!props.showLangs) {
 		return null;
 	}
-	let languageList: Array<any> = [];
+	let languageList: Array<object> = [];
 	langsCode.forEach((key: string, value: string) => {
 		languageList.push(
 			<button
@@ -20,7 +20,7 @@ function LangaugeList(props: T.ILangProps) {
 			</button>,
 		);
 	});
-	let showList: any = <div></div>;
+	let showList: object = <div></div>;
 	if (props.isInputLang) {
 		showList = (
 			<div className={`${styles.langList} ${styles.input}`}>{languageList}</div>
