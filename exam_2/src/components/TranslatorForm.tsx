@@ -6,7 +6,7 @@ import * as T from '../types/types';
 import InputBox from './InputBox';
 import OutsputBox from './OutputBox';
 import Language from './Language';
-// ToDo автовычисление высоты боксов
+
 function TranslatorForm() {
 	const [inputBoxValue, setInputBoxValue] = useState('');
 	const [outputBoxValue, setOutputBoxValue] = useState('');
@@ -18,16 +18,12 @@ function TranslatorForm() {
 	}
 	function handleInputLang(inpLang: string) {
 		setInputLang(inpLang);
-		// console.log('inpLang :', inpLang, 'setInputLang(', inputLang, ')'); // ToDo comment it
 	}
 	function handleOutputLang(outLang: string) {
 		setOutputLang(outLang);
-		// console.log('outLang :', outLang, 'setOutputLang(', outputLang, ')'); // ToDo comment it
 	}
 	async function handleSubmit(event: any) {
 		event.preventDefault();
-		// setInputBoxValue(inputLang); // ToDo comment it
-		// setOutputBoxValue(outputLang); // ToDo comment it
 		let fromto: string = `${inputLang}-${outputLang}`;
 		if ('AD' === inputLang || '' === inputLang) {
 			fromto = `${outputLang}`;
@@ -48,7 +44,6 @@ function TranslatorForm() {
 	}
 
 	return (
-		// <div className=styles.container> Hello?</div>
 		<div className={styles.container}>
 			<div className={styles.options_bar}>
 				<Language

@@ -22,9 +22,7 @@ function Langauge(props: T.ILanguageProps) {
 
 	function handleChooseLang(chosenLangauge: string) {
 		setChosenLangFull(chosenLangauge);
-		// console.log(chosenLangauge); // ToDo comment it
 		if (langsCode.has(chosenLangauge)) {
-			// console.log(chosenLangauge); // ToDo comment it
 			langFromList = langsCode.get(chosenLangauge) as string;
 			langFromListFull = chosenLangauge;
 			setChosenLang(langFromList);
@@ -106,12 +104,7 @@ function Langauge(props: T.ILanguageProps) {
 			>
 				{'AutoDetect'}
 			</button>
-			<button
-				className={styles.buttonLang}
-				// style={{background: '#add8e6'}}
-			>
-				{chosenLangFull}
-			</button>
+			<button className={styles.buttonLang}>{chosenLangFull}</button>
 			{buttonOpenLangs}
 			<LangaugeList
 				lang={langFromList}

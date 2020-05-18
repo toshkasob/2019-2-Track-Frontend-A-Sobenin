@@ -17,7 +17,6 @@ export async function translate(
 	}
 
 	const cacheResponse: T.TTranslateResponse = await checkCache(qParams);
-	// console.log('cache:',cacheResponse)
 	if (200 === cacheResponse.code || 501 === cacheResponse.code) {
 		return cacheResponse;
 	}
@@ -35,7 +34,6 @@ export async function translate(
 	}
 
 	apiURL = encodeURI(apiURL);
-	// console.log(apiURL)
 
 	const resultF = await fetch(apiURL, { method: 'POST' })
 		.then((response: any) => response.json())
@@ -52,8 +50,5 @@ export async function translate(
 			return error;
 		});
 
-	// if (200 === resultF.code || 501 === resultF.code) {
-	// 	await saveCache(qParams, resultF);
-	// }
 	return 200 === resultF.code ? resultF : error;
 }

@@ -8,15 +8,6 @@ function LangaugeList(props: T.ILangProps) {
 		return null;
 	}
 	let languageList: Array<any> = [];
-	// if (props.isInputLang) {
-	// 	languageList.push(
-	// 		<button onClick={() => {
-	// 			props.handleChoseLang('ad')
-	// 		}}>
-	// 			{'AutoDetect'}
-	// 		</button>
-	// 	);
-	// }
 	langsCode.forEach((key: string, value: string) => {
 		languageList.push(
 			<button

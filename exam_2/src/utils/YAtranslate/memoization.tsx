@@ -26,5 +26,3 @@ export async function checkCache(
 		return error;
 	}
 }
-
-// export default checkCache;
