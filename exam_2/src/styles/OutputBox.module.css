@@ -1,0 +1,15 @@
+:root {
+	--width-area: 45vw;
+	--text-sizing: 15px;
+	--max-height-area: 50vh;
+}
+
+.textarea {
+	min-height: calc(var(--max-height-area) / 1);
+	max-height: var(--max-height-area);
+	width: 98%;
+	height: 98%;
+	overflow: auto;
+	font-size: var(--text-sizing);
+	resize: none;
+}
